@@ -64,7 +64,7 @@ th, td {
 
 
 <div class="rayhan">
-<img src="{{baseimage('uploads/admin/'.$logu->image)}}" style="width:auto; height:150;"/>
+<img src="{{public_path('uploads/admin/'.$logu->image)}}" style="width:auto; height:150;"/>
   </div>
           <br>
         <p class="topheader"> 
