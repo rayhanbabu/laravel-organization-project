@@ -58,9 +58,10 @@ th, td {
 </head>
 <body>
     
-     <div class="rayhanwater">
-       <img src="{{ public_path('uploads/admin/'.$logu->image) }}" class="watermark" style=" width:500px; height:auto; "/>
-  </div>
+
+      <div class="rayhanwater">
+            <img src="{{ public_path('uploads/admin/'.$logu->image) }}" class="watermark" style=" width:500px; height:auto; "/>
+       </div>
 
 
 <div class="rayhan">
