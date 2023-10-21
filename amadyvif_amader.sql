@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Oct 11, 2023 at 01:28 AM
--- Server version: 10.5.20-MariaDB-cll-lve
--- PHP Version: 7.4.27
+-- Host: 127.0.0.1
+-- Generation Time: Oct 21, 2023 at 03:15 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `amadyvif_amader`
+-- Database: `organization`
 --
 
 -- --------------------------------------------------------
