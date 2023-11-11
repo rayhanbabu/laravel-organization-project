@@ -76,13 +76,13 @@ class NoticeController extends Controller
                     if($request->hasfile('image')){
                      $size = $request->file('image')->getsize(); 
                            if($size<512000){
-                           $path='uploads/admin/'.$notice->image;
+                           $path=public_path('uploads/admin/').$notice->image;
                           if(File::exists($path)){
                            File::delete($path);
                            }
                            $image = $request->file('image');
                            $new_name = rand() . '.' . $image->getClientOriginalExtension();
-                           $image->move('uploads/admin/', $new_name);
+                           $image->move(public_path('uploads/admin'), $new_name);
                         $notice->image=$new_name;
                            } 
                            else{
@@ -108,7 +108,7 @@ class NoticeController extends Controller
 
   public function destroy($id){
         $notice=Notice::find($id);
-        $destination='uploads/admin/'.$notice->image;
+        $destination=public_path('uploads/admin/').$notice->image;
             if(File::exists($destination)){
                File::delete($destination);
             }
@@ -147,7 +147,7 @@ class NoticeController extends Controller
             if($size<512000){
               $image= $request->file('image'); 
               $new_name = rand() . '.' . $image->getClientOriginalExtension();
-              $image->move('uploads/admin', $new_name);
+              $image->move(public_path('uploads/admin/'), $new_name);
               $notice->image=$new_name;
           }else{
                return response()->json([

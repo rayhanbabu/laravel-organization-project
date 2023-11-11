@@ -58,7 +58,7 @@ class ExpreController extends Controller
                   if($w<310 && $h<310){
                    $image= $request->file('image'); 
                    $new_name = rand() . '.' . $image->getClientOriginalExtension();
-                   $image->move('uploads/admin', $new_name);
+                   $image->move(public_path('uploads/admin'), $new_name);
                    $text->image=$new_name;
                 }else{
                   return response()->json([
@@ -168,13 +168,13 @@ public function edit(Request $request) {
           $w=$hw[0];
           $h=$hw[1];	 
              if($w<310 && $h<310){
-              $path='uploads/admin/'.$text->image;
+              $path=public_path('uploads/admin/').$text->image;
               if(File::exists($path)){
                File::delete($path);
                }
               $image = $request->file('image');
               $new_name = rand() . '.' . $image->getClientOriginalExtension();
-              $image->move('uploads/admin/', $new_name);
+              $image->move(public_path('uploads/admin'), $new_name);
               $text->image=$new_name;
               } 
               else{
@@ -204,6 +204,11 @@ public function edit(Request $request) {
 
   public function delete(Request $request) {
     $text=expre::find($request->input('id'));
+
+    $path=public_path('uploads/admin/').$text->image;
+    if(File::exists($path)){
+       File::delete($path);
+    }
     $text->delete();
     return response()->json([
        'status'=>200,  

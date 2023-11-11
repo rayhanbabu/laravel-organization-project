@@ -175,7 +175,7 @@ class TestimonialController extends Controller
             if($w<310 && $h<310){
              $image= $request->file('image'); 
              $new_name = rand() . '.' . $image->getClientOriginalExtension();
-             $image->move('uploads/admin', $new_name);
+             $image->move(public_path('uploads/admin'), $new_name);
              $testimonial->image=$new_name;
           }else{
             return response()->json([
@@ -318,13 +318,13 @@ if($validator->fails()){
          $w=$hw[0];
          $h=$hw[1];	 
             if($w<310 && $h<310){
-             $path='uploads/admin/'.$testimonial->image;
+             $path=public_path('uploads/admin/').$testimonial->image;
              if(File::exists($path)){
               File::delete($path);
               }
              $image = $request->file('image');
              $new_name = rand() . '.' . $image->getClientOriginalExtension();
-             $image->move('uploads/admin/', $new_name);
+             $image->move(public_path('uploads/admin'), $new_name);
              $testimonial->image=$new_name;
              } 
              else{
@@ -352,7 +352,7 @@ if($validator->fails()){
 
 public function delete(Request $request) {
   $testimonial=Testimonial::find($request->input('id'));
-  $path='uploads/admin/'.$testimonial->image;
+  $path=public_path('uploads/admin/').$testimonial->image;
       if(File::exists($path)){
          File::delete($path);
       }

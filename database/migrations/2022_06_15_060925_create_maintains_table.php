@@ -49,6 +49,16 @@ return new class extends Migration
             $table->string('youtube_link')->nullable();
             $table->string('other_link')->nullable();
             $table->string('version_type')->nullable();
+
+            $table->string('store_id')->nullable();
+            $table->string('store_passwd')->nullable();
+            $table->string('currency')->nullable();
+            $table->string('success_url')->nullable();
+            $table->string('fail_url')->nullable();
+            $table->string('cancel_url')->nullable();
+            $table->string('ipn_url')->nullable();
+            $table->string('init_url')->nullable();
+           
             $table->timestamps();
         });
     }

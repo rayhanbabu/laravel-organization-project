@@ -95,7 +95,7 @@ class MagazineController extends Controller
               if($w<1930 && $h<1090){
                  $image= $request->file('image'); 
                  $new_name = rand() . '.' .$image->getClientOriginalExtension();
-                 $image->move('uploads/admin',$new_name);
+                 $image->move(public_path('uploads/admin'),$new_name);
                  $model->image=$new_name;
               }else{
                   return response()->json([
@@ -112,7 +112,7 @@ class MagazineController extends Controller
               if($w<310 && $h<310){
                  $image= $request->file('image'); 
                  $new_name = rand() . '.' .$image->getClientOriginalExtension();
-                 $image->move('uploads/admin',$new_name);
+                 $image->move(public_path('uploads/admin'),$new_name);
                  $model->image=$new_name;
               }else{
                   return response()->json([
@@ -265,13 +265,13 @@ class MagazineController extends Controller
             $w=$hw[0];
             $h=$hw[1];	 
                if($w<1930 && $h<1090){
-                $path='uploads/admin/'.$model->image;
+                $path=public_path('uploads/admin/').$model->image;
                 if(File::exists($path)){
                  File::delete($path);
                  }
                 $image = $request->file('image');
                 $new_name = rand() . '.' . $image->getClientOriginalExtension();
-                $image->move('uploads/admin/', $new_name);
+                $image->move(public_path('uploads/admin'), $new_name);
                 $model->image=$new_name;
                 } 
                 else{
@@ -288,13 +288,13 @@ class MagazineController extends Controller
              $w=$hw[0];
              $h=$hw[1];	 
                 if($w<310 && $h<310){
-                 $path='uploads/admin/'.$model->image;
-                 if(File::exists($path)){
-                  File::delete($path);
-                  }
+                 $path=public_path('uploads/admin/').$model->image;
+                  if(File::exists($path)){
+                    File::delete($path);
+                   }
                  $image = $request->file('image');
                  $new_name = rand() . '.' . $image->getClientOriginalExtension();
-                 $image->move('uploads/admin/', $new_name);
+                 $image->move(public_path('uploads/admin'), $new_name);
                  $model->image=$new_name;
                  } 
                  else{
@@ -324,7 +324,7 @@ class MagazineController extends Controller
 
     public function delete(Request $request) {
        $model=Magazine::find($request->input('id'));
-       $path='uploads/admin/'.$model->image;
+       $path=public_path('uploads/admin/').$model->image;
           if(File::exists($path)){
              File::delete($path);
           }
