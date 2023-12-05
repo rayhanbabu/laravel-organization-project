@@ -243,6 +243,7 @@ public function admininsert(request $request){
             'mobile' => 'required|unique:admins,mobile',
             'email' => 'required|unique:admins,email',
          ],
+         
             [
                 'name.required'=>'Organization name(Bangla) is required',
                 'nameen.required'=>'Organization name(English) is required',
@@ -429,6 +430,19 @@ public function adminedit(request $request){
     $admin->welcome_size=$request->input('welcome_size');
     $admin->testimonial_size=$request->input('testimonial_size');
     $admin->slide_size=$request->input('slide_size');
+
+    $admin->level_union=$request->input('level_union');
+    $admin->level_workplace=$request->input('level_workplace');
+    $admin->level_current_address=$request->input('level_current_address');
+    $admin->level_permanent_address=$request->input('level_permanent_address');
+    $admin->level_custom1=$request->input('level_custom1');
+
+    $admin->level_custom2=$request->input('level_custom2');
+    $admin->level_custom3=$request->input('level_custom3');
+    $admin->level_custom4=$request->input('level_custom4');
+    $admin->level_university=$request->input('level_university');
+    $admin->level_department=$request->input('level_department');
+
     $admin->update();
     return redirect()->back()->with('success','Admin Update Successfuly');
 }

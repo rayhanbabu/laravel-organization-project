@@ -37,3 +37,6 @@ use App\Http\Controllers\FormController;
        Route::post('/{username}/application',[TestimonialController::class,'storeapi']);
 
        Route::get('/{username}/admin_view',[TestimonialController::class,'apiadmin_view']);
+
+       Route::get('/{username}/union_view',[TestimonialController::class,'union_view']);
+       Route::get('/{username}/university_view',[TestimonialController::class,'university_view']);

@@ -547,6 +547,20 @@ public function delete(Request $request) {
               return response()->json(['admin'=>$admin]);
        }
 
+
+
+         public function union_view($username){     
+              $data = App::where('admin_name',$username)->where('category','union')->orderBy('phone', 'asc')->get();
+               return response()->json(['data'=>$data]);
+          }
+
+         public function university_view($username){     
+             $data = App::where('admin_name',$username)->where('category','university')->orderBy('phone', 'asc')->get();
+             return response()->json(['data'=>$data]);
+          }
+
+
+
           public function apihome($username){
                   $admin= Admin::where('admin_name',$username)->select('id','name','nameen','address','email',
                      'mobile','admin_name','header_size','resheader_size')->first();

@@ -4,7 +4,7 @@
 @section('content')
 
   <div class="row mt-4 mb-3">
-          <div class="col-6"> <h4 class="mt-0">History View</h4></div>
+          <div class="col-6"> <h4 class="mt-0">History / Bank / Category View</h4></div>
                      <div class="col-3">
                           <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                             
@@ -35,16 +35,18 @@
 
      <div class="form-group  my-2">
 	      	<label><b>Serial</b></label>
-	        <input name="phone" id="phone" type="text"   class="form-control"  required/>
+	        <input name="phone" id="phone" type="number"   class="form-control"  required/>
           <p class="text-danger err_phone"></p>
      </div>
 
     <div class="form-group  my-2">
          <label for="lname">category</label>
-                <select class="form-select" name="category" id="category" aria-label="Default select example"  >
+                 <select class="form-select" name="category" id="category" aria-label="Default select example"  >
                       <option value="history">history</option>
                       <option value="bank">bank</option>
-                </select>
+                      <option value="university">university</option>
+                      <option value="union">union</option>
+                 </select>
      </div>         
 	  
    <div class="form-group  my-2">        
@@ -94,7 +96,7 @@
 
                                 
    <label><b>Serial No</b></label><br>
-   <input name="phone" id="edit_phone" type="text" class="form-control" required/>
+   <input name="phone" id="edit_phone" type="number" class="form-control" required/>
            <p class="text-danger edit_err_phone"></p>
 
 
@@ -103,6 +105,8 @@
                 <select class="form-select" name="category" id="edit_category" aria-label="Default select example"  >
                       <option value="history">history</option>
                       <option value="bank">bank</option>
+                      <option value="university">university</option>
+                      <option value="union">union</option>
                 </select>
          </div>    
 

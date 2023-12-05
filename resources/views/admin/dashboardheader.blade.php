@@ -178,7 +178,7 @@
 
      <a class="nav-link @yield('app_select')" href="{{url('admin/app')}}">
         <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-          History
+          History /bank/ Category
      </a>
 
 

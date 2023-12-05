@@ -36,8 +36,8 @@
          <th width="10%" >Subscribe </th>
          <th width="10%" >Payment Duration </th>
          <th width="15%" >Header Size </th>
-		     <th width="15%" >Reponseive Header Size </th>
-	       <th width="15%" >Magazine Size</th>
+	   <th width="15%" >Reponseive Header Size </th>
+	   <th width="15%" >Magazine Size</th>
          <th width="15%" >Bllod Size</th>
          <th width="10%" >Member Size</th>
          <th width="10%" >advisor size</th>

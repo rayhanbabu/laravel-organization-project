@@ -121,7 +121,7 @@
 
     <td>
       <button type="button" name="edit" id="{{$item->id}}" class="btn btn-success btn-sm edit" 
-	  	 data-name="{{$item->name}}" data-email="{{$item->email}}" data-admin_name="{{$item->admin_name}}"
+	 data-name="{{$item->name}}" data-email="{{$item->email}}" data-admin_name="{{$item->admin_name}}"
        data-admin_password="{{$item->admin_password}}" data-role="{{$item->role}}" data-mobile="{{$item->mobile}}"
        data-nameen="{{$item->nameen}}" data-address="{{$item->address}}" data-payment="{{$item->payment}}"
        data-magazine_size="{{$item->magazine_size}}" data-member_size="{{$item->member_size}}"
@@ -132,7 +132,14 @@
        data-text4="{{$item->text4}}" data-version_type="{{$item->version_type}}"
        data-resheader_size="{{$item->resheader_size}}"  data-executive_size="{{$item->executive_size}}"
        data-senior_size="{{$item->senior_size}}" data-general_size="{{$item->general_size}}" data-notice_size="{{$item->notice_size}}"
-       data-welcome_size="{{$item->welcome_size}}"data-testimonial_size="{{$item->testimonial_size}}"data-slide_size="{{$item->slide_size}}" >Edit</button>
+       data-welcome_size="{{$item->welcome_size}}"data-testimonial_size="{{$item->testimonial_size}}" data-slide_size="{{$item->slide_size}}"
+       
+      data-level_union="{{$item->level_union}}" data-level_workplace="{{$item->level_workplace}}" data-level_current_address="{{$item->level_current_address}}"
+      data-level_permanent_address="{{$item->level_permanent_address}}"  data-level_custom1="{{$item->level_custom1}}"
+      data-level_custom2="{{$item->level_custom2}}"  data-level_custom3="{{$item->level_custom3}}"  
+      data-level_custom4="{{$item->level_custom4}}"  data-level_university="{{$item->level_university}}"  data-level_department="{{$item->level_department}}"  
+       
+       >Edit</button>
     </td>
 
         <td><a  class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to milloff  this month?')"  href="{{ url('maintain/admindelete/'.$item->id)}}">Delete</a></td>
@@ -192,6 +199,19 @@
                    var welcome_size = $(this).data("welcome_size");
                    var testimonial_size = $(this).data("testimonial_size");
                    var slide_size = $(this).data("slide_size");
+
+                   var level_union = $(this).data("level_union");
+                   var level_workplace = $(this).data("level_workplace");
+                   var level_current_address = $(this).data("level_current_address");
+                   var level_permanent_address = $(this).data("level_permanent_address");
+                   var level_custom1 = $(this).data("level_custom1");
+
+                   var level_custom2 = $(this).data("level_custom2");
+                   var level_custom3 = $(this).data("level_custom3");
+                   var level_custom4 = $(this).data("level_custom4");
+                   var level_university = $(this).data("level_university");
+                   var level_department = $(this).data("level_department");
+
                      $('#edit_name').val(name);
                      $('#edit_nameen').val(nameen);
                      $('#edit_address').val(address);
@@ -224,6 +244,20 @@
                      $('#edit_welcome_size').val(welcome_size);
                      $('#edit_testimonial_size').val(testimonial_size);
                      $('#edit_slide_size').val(slide_size);
+
+                     $('#edit_level_union').val(level_union);
+                     $('#edit_level_workplace').val(level_workplace);
+                     $('#edit_level_current_address').val(level_current_address);
+                     $('#edit_level_permanent_address').val(level_permanent_address);
+                     $('#edit_level_custom1').val(level_custom1);
+
+                     $('#edit_level_custom2').val(level_custom2);
+                     $('#edit_level_custom3').val(level_custom3);
+                     $('#edit_level_custom4').val(level_custom4);
+                     $('#edit_level_university').val(level_university);
+                     $('#edit_level_department').val(level_department);
+
+
 
                      $('#updatemodal').modal('show');
                 });
@@ -489,6 +523,64 @@
                <label class=""><b>Text4   </b></label>
                <input type="text" id="edit_text4"  name="text4" class="form-control" >
          </div> 
+
+         <div class="form-group col-sm-4  mb-4">
+              <label class=""><b> Level Union</b></label>
+               <input type="text" id="edit_level_union"  name="level_union" class="form-control" >
+          </div>  
+          
+          
+          <div class="form-group col-sm-4  mb-4">
+               <label class=""><b> level workplace</b></label>
+               <input type="text" id="edit_level_workplace"  name="level_workplace" class="form-control" >
+          </div> 
+          
+          <div class="form-group col-sm-4  mb-4">
+             <label class=""><b> level curr. address</b></label>
+             <input type="text" id="edit_level_current_address"  name="level_current_address" class="form-control" >
+          </div>  
+          
+          <div class="form-group col-sm-4  mb-4">
+              <label class=""><b> level per. address</b></label>
+               <input type="text" id="edit_level_permanent_address"  name="level_permanent_address" class="form-control" >
+          </div>  
+          
+          <div class="form-group col-sm-4  mb-4">
+               <label class=""><b> level custom1</b></label>
+               <input type="text" id="edit_level_custom1"  name="level_custom1" class="form-control" >
+          </div>   
+
+          <div class="form-group col-sm-4  mb-4">
+               <label class=""><b> level custom2</b></label>
+               <input type="text" id="edit_level_custom2"  name="level_custom2" class="form-control" >
+          </div> 
+          
+          
+          <div class="form-group col-sm-4  mb-4">
+               <label class=""><b> level custom3</b></label>
+               <input type="text" id="edit_level_custom3"  name="level_custom3" class="form-control" >
+          </div> 
+          
+          
+          <div class="form-group col-sm-4  mb-4">
+             <label class=""><b> level custom4</b></label>
+             <input type="text" id="edit_level_custom4"  name="level_custom4" class="form-control" >
+          </div>  
+          
+          
+          <div class="form-group col-sm-4  mb-4">
+             <label class=""><b> level university</b></label>
+             <input type="text" id="edit_level_university"  name="level_university" class="form-control" >
+          </div>   
+
+
+          <div class="form-group col-sm-4  mb-4">
+               <label class=""><b> level department</b></label>
+               <input type="text" id="edit_level_department"  name="level_department" class="form-control" >
+          </div> 
+          
+          
+
 
     </div>
 
