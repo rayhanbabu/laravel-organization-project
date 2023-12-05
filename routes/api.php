@@ -22,20 +22,18 @@ use App\Http\Controllers\FormController;
        return $request->user();
   });
 
-
-       Route::get('/member/{username}/{member}', [TestimonialController::class, 'apimember']);
+       Route::get('/{username}/member/{member}', [TestimonialController::class, 'apimember']);
        Route::get('/viewmember/edit', [TestimonialController::class,'apiviewmember']);
-       Route::get('/home/{username}', [TestimonialController::class, 'apihome']);
-       Route::get('/magazine/{username}', [TestimonialController::class, 'apimagazine']);
-       Route::get('/notice/{username}', [TestimonialController::class, 'apinotice']);
-       Route::get('/expre/{username}', [TestimonialController::class, 'apiexpre']);
-       Route::get('/history/{username}', [TestimonialController::class, 'apihistory']);
+       Route::get('/{username}/home', [TestimonialController::class, 'apihome']);
+       Route::get('/{username}/magazine', [TestimonialController::class, 'apimagazine']);
+       Route::get('/{username}/notice', [TestimonialController::class, 'apinotice']);
+       Route::get('/{username}/expre', [TestimonialController::class, 'apiexpre']);
+       Route::get('/{username}/history', [TestimonialController::class, 'apihistory']);
        
-       Route::get('/registration/{username}', [TestimonialController::class,'apiregistration']);
-       
-       Route::get('/bank/{username}',[TestimonialController::class,'apibank']);
+       Route::get('/{username}/registration', [TestimonialController::class,'apiregistration']);
+       Route::get('/{username}/bank',[TestimonialController::class,'apibank']);
 
+       Route::post('/{username}/registration', [FormController::class,'registration']); 
+       Route::post('/{username}/application',[TestimonialController::class,'storeapi']);
 
-       Route::post('/registration', [FormController::class,'registration']);
-        
-       Route::post('/application',[TestimonialController::class,'storeapi']);
+       Route::get('/{username}/admin_view',[TestimonialController::class,'apiadmin_view']);

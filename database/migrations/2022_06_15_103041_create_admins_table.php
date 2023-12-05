@@ -57,6 +57,19 @@ return new class extends Migration
             $table->string('fb_link')->nullable();
             $table->string('youtube_link')->nullable();
             $table->string('other_link')->nullable();
+
+            $table->string('level_union')->nullable();
+            $table->string('level_workplace')->nullable();
+            $table->string('level_current_address')->nullable();
+            $table->string('level_permanent_address')->nullable();
+            $table->string('level_custom1')->nullable();
+            $table->string('level_custom2')->nullable();
+            $table->string('level_custom3')->nullable();
+            $table->string('level_custom4')->nullable();
+            $table->string('level_university')->nullable();
+            $table->string('level_department')->nullable();
+            $table->integer('web_show')->default(0);
+            $table->integer('api_show')->default(1);
             $table->timestamps();
         });
     }

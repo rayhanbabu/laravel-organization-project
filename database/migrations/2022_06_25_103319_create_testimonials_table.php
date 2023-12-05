@@ -37,6 +37,9 @@ return new class extends Migration
              $table->string('text2')->nullable();
              $table->string('text3')->nullable();
              $table->string('text4')->nullable();
+             
+
+
              $table->timestamps();
         });
     }

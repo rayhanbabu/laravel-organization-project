@@ -119,41 +119,36 @@ class TestimonialController extends Controller
    }
 
 
-          public function storeapi(Request $request){
+     public function storeapi(Request $request,$username){
 
-      $admin= Admin::where('admin_name',$request->input('admin_name'))->first();
+      $admin= Admin::where('admin_name',$username)->first();
       $validator=\Validator::make($request->all(),[       
            'name' => 'required',
-           'admin_name' => 'required',
-           'workplace' => 'required',
-           'current_address' => 'required',
-           'permanent_address' => 'required',
-           'blood' => 'required',
            'phone' => 'required|unique:testimonials,phone',
-           'email' => 'required|email',
-           'image' => 'required|image|mimes:jpeg,png,jpg|max:512000',
+           'email' => 'required|unique:testimonials,email',
+           'image' => 'image|mimes:jpeg,png,jpg|max:512000',
        ]);
         
   if($admin){
     if($validator->fails()){
        return response()->json([
-           'status'=>700,
-           'errors'=>$validator->messages(),
-        ]);
+           'status'=>'error',
+           'message'=>$validator->messages(),
+        ],402);
    }else{
-     $data1= Testimonial::where('admin_name',$request->input('admin_name'))->count('serial');
-      $categorynumber= Testimonial::where('admin_name',$request->input('admin_name'))->where('category','General')->count('serial')+1;
+     $data1= Testimonial::where('admin_name',$username)->count('serial');
+      $categorynumber= Testimonial::where('admin_name',$username)->where('category','General')->count('serial')+1;
        if($data1>=$admin->member_size){  
            return response()->json([
                'status'=>600,
                'errors'=> 'Row Insert Permision is '.$admin->member_size. '. More Details Contact service Provider',
-            ]);  
+            ],403);  
        }else{
       $testimonial= new Testimonial;
       $testimonial->category="General";
       $testimonial->serial=$categorynumber;
       $testimonial->text1='General Member';
-      $testimonial->admin_name=$request->input('admin_name');
+      $testimonial->admin_name=$username;
       $testimonial->name=$request->input('name');
       $testimonial->workplace=$request->input('workplace');
       $testimonial->current_address=$request->input('current_address');
@@ -166,6 +161,16 @@ class TestimonialController extends Controller
       $testimonial->email_status='show';
       $testimonial->verify_status=0;
       $testimonial->text2=$request->input('text2');
+
+      $testimonial->custom1=$request->input('custom1');
+      $testimonial->custom2=$request->input('custom2');
+      $testimonial->custom3=$request->input('custom3');
+      $testimonial->custom4=$request->input('custom4');
+      $testimonial->university=$request->input('university');
+      $testimonial->department=$request->input('department');
+      $testimonial->address_union=$request->input('address_union');
+
+
     
        if($request->hasfile('image')){
         $file=$_FILES['image']['tmp_name'];
@@ -179,16 +184,16 @@ class TestimonialController extends Controller
              $testimonial->image=$new_name;
           }else{
             return response()->json([
-                'status'=>600,  
-               'message'=>'Image size must be 300*300 ',
-             ]);
+                'status'=>'error',  
+                'message'=>'Image size must be 300*300 ',
+             ],456);
             }
         }
        $testimonial->save();
        return response()->json([
-          'status'=>200,  
+          'status'=>'success',  
           'message'=>'Registration Successfull',
-       ]);
+       ],200);
 
         }
 
@@ -196,9 +201,9 @@ class TestimonialController extends Controller
 
        }else{
            return response()->json([
-              'status'=>600,  
+              'status'=>'error',  
               'message'=>'Something Rong',
-           ]);
+           ],479);
        }
 
     }
@@ -532,6 +537,15 @@ public function delete(Request $request) {
 
    
          //api
+
+      public function apiadmin_view($username){
+             $admin= Admin::where('admin_name',$username)->select('id','name','nameen','address','email',
+                 'mobile','admin_name','header_size','resheader_size','level_union','level_workplace'
+                 ,'level_current_address','level_permanent_address','level_custom1'
+                 ,'level_custom2','level_custom3','level_custom4','level_university','level_department')->first();   
+            
+              return response()->json(['admin'=>$admin]);
+       }
 
           public function apihome($username){
                   $admin= Admin::where('admin_name',$username)->select('id','name','nameen','address','email',
