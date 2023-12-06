@@ -32,14 +32,14 @@ class TestimonialController extends Controller
    public function store(Request $request){
 
     if(Session::has('admin')){
-    $admin= Admin::where('admin_name',Session::get('admin')->admin_name)->first();
-      $validator=\Validator::make($request->all(),[       
-         'serial' => 'required',
-         'name' => 'required',
-         'category' => 'required',
-         'workplace' => 'required',
-         'image' => 'image|mimes:jpeg,png,jpg|max:512000',
-      ]);
+     $admin= Admin::where('admin_name',Session::get('admin')->admin_name)->first();
+        $validator=\Validator::make($request->all(),[       
+           'serial' => 'required',
+           'name' => 'required',
+           'category' => 'required',
+           'workplace' => 'required',
+           'image' => 'image|mimes:jpeg,png,jpg|max:512000',
+        ]);
 
      if($request->input('category')=='Executive'){
          $count=$admin->executive_size;
@@ -218,7 +218,9 @@ class TestimonialController extends Controller
    public function fetchAll($member) {
     if(Session::has('admin')){
     $admin=Session::get('admin');
-    $data = Testimonial::where('category',$member)->where('admin_name',$admin->admin_name)->get();
+    $data = Testimonial::where('testimonials.category',$member)->where('testimonials.admin_name',$admin->admin_name)
+    ->leftjoin('apps','apps.id','=','testimonials.address_union')
+    ->select('apps.dureg as app_category','testimonials.*')->get();
       $output=' <h5 class="text-success"> Total Member : '.$data->count().' </h5>';	
     if ($data->count()> 0) {
        $output .= '<table class="table table-bordered table-sm text-start align-middle">
@@ -231,6 +233,7 @@ class TestimonialController extends Controller
            <th>Phone, E-mail </th>
            <th>Blood</th>
            <th>Union</th>
+           <th>University</th>
            <th>Verify Status </th>
            <th>Action</th>
          </tr>
@@ -252,8 +255,8 @@ class TestimonialController extends Controller
             </td>
             <td>' . $row->phone .', '. $row->phone_status .', '. $row->email .', '. $row->email_status . '</td>
             <td>' . $row->blood. '</td>
-            <td>' . $row->address_union. '</td>
-         
+            <td>' . $row->app_category. '</td>
+            <td>' . $row->university. '</td>
             <td>' . $row->verify_status. '</td>
            <td>
           
