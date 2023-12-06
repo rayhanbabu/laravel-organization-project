@@ -121,13 +121,8 @@
 
         @if($admin->level_university)     
             <div class="col-lg-6 my-2">
-              <label for="lname"> {{$admin->level_university}} </label>
-              <select class="form-select" name="university" id="edit_university" aria-label="Default select example" required >
-                <option value="">Select One</option>
-                 @foreach($university as $row)  
-                      <option value="{{$row->id}}">{{$row->dureg}}</option>
-                  @endforeach
-             </select>
+                <label for="lname"> {{$admin->level_university}} </label>
+                <input type="text" name="university" id="edit_university" class="form-control" placeholder="">
             </div>
         @else @endif  
         
