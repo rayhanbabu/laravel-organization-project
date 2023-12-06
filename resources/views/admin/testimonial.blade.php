@@ -15,8 +15,7 @@
                      </div>
                      <div class="col-3">
                           <div class="d-grid gap-2 d-md-flex "> 
-                         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addEmployeeModal"><i
-                      class="bi-plus-circle me-2"></i>Add</button>      
+                           
                 </div>
            </div> 
        </div> 
@@ -31,140 +30,7 @@
      </div>
 
 
- {{-- add new employee modal start --}}
-<div class="modal fade" id="addEmployeeModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-  data-bs-backdrop="static" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add New</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <form  method="POST" id="add_employee_form" enctype="multipart/form-data">
-        <div class="modal-body p-4 bg-light">
-           <ul class="text-danger"  id="add_form_errlist"></ul>
-
-           <input type="hidden" name="category" id="category" value={{$member}} class="form-control" placeholder="" >
-
-           <div class="col-lg-12">
-              <label for="fname">Serial<span style="color:red;"> * </span></label>
-              <input type="number" name="serial" id="serial" class="form-control" placeholder="" required>
-            </div>
-
-          <div class="my-2">
-                <label for="name">Name<span style="color:red;"> * </span></label>
-                <input type="text" name="name" id="name" class="form-control" placeholder=""  required>
-          </div>
-          
-          
-           <div class="my-2">
-               <label for="desig">Designation<span style="color:red;"> * </span></label>
-                <input type="text" name="text1" id="text1" class="form-control" placeholder=""  required>
-           </div>
-
-           <div class="my-2">
-               <label for="desig">WorkPlace/ Institution<span style="color:red;"> * </span></label>
-                <input type="text" name="workplace" id="workplace" class="form-control" placeholder=""  required>
-           </div>
-
-          <div class="my-2">
-            <label for="desig">Current Address </label>
-            <input type="text" name="current_address" id="current_address" class="form-control" placeholder="">
-          </div>
-          
-         
-          <div class="my-2">
-            <label for="desig">Permanent Address </label>
-            <input type="text" name="permanent_address" id="permanent_address" class="form-control" placeholder="">
-          </div>
-          
-           <div class="my-2">
-            <label for="desig">Facebook Link  </label>
-            <input type="text" name="fb_link" id="fb_link" class="form-control" placeholder="">
-          </div>
-
-          <div class="row">
-            <div class="col-lg-6 my-2">
-              <label for="fname">Blood Group</label>
-              <select class="form-select" name="blood" id="blood" aria-label="Default select example" >
-                     <option value="">Select One</option>
-                     <option value="A+">A+</option>
-                     <option value="A-">A-</option>
-                     <option value="B+">B+</option>
-                     <option value="B-">B-</option>
-                     <option value="O+">O+</option>
-                     <option value="O-">O-</option>
-                     <option value="AB+">AB+</option>
-                     <option value="AB-">AB-</option>
-                   
-             </select>
-            </div>
-
-            <div class="col-lg-6 my-2">
-              <label for="lname">Blood Group Status </label>
-              <select class="form-select" name="blood_status" id="blood_status" aria-label="Default select example"  >
-                     <option value="show">Web Show</option>
-                     <option value="hidden">Web Hidden</option>
-             </select>
-            </div>
-
-          
-            <div class="col-lg-8 my-2">
-              <label for="fname">Phone</label>
-              <input name="phone" id="phone" type="text" pattern="[0][1][3 7 6 5 8 9][0-9]{8}" title="
-				Please select Valid mobile number"  class="form-control"  />
-            </div>
-
-            <div class="col-lg-4 my-2">
-              <label for="lname">Phone Status <span style="color:red;"> * </span></label>
-              <select class="form-select" name="phone_status" id="phone_status" aria-label="Default select example"  >
-                     <option value="show">Web Show</option>
-                     <option value="hidden">Web Hidden</option>
-             </select>
-            </div>
-
-
-            <div class="col-lg-8 my-2">
-              <label for="fname">E-mail</label>
-              <input name="email" id="email" type="text"  class="form-control"  />
-            </div>
-
-            <div class="col-lg-4 my-2">
-              <label for="lname">E-mail Status</label>
-              <select class="form-select" name="email_status" id="email_status" aria-label="Default select example"  >
-                     <option value="show">Web Show</option>
-                     <option value="hidden">Web Hidden</option>
-             </select>
-            </div>
-
-
-          </div>
-
-          
-          <div class="my-2">
-             <label for="avatar">Select Image(300*300)</label>
-             <input type="file" name="image"  id="image" class="form-control" >
-          </div>
-  
-          <div class="loader">
-            <img src="{{ asset('images/abc.gif') }}" alt="" style="width: 50px;height:50px;">
-          </div>
-
-        <div class="mt-4">
-          <button type="submit" id="add_btn" class="btn btn-primary">Add </button>
-       </div>  
-
-      </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-       
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-
-{{-- add new employee modal end --}}
+ 
 
 
 {{-- edit employee modal start --}}
@@ -200,41 +66,109 @@
           </div>
 
           <div class="my-2">
-            <label for="name">Name </label>
+            <label for="name">নাম  </label>
             <input type="text" name="name" id="edit_name" class="form-control" placeholder=""required >
           </div>
           
            <div class="my-2">
-               <label for="desig">Designation<span style="color:red;"> * </span></label>
+               <label for="desig">পদবি <span style="color:red;"> * </span></label>
                 <input type="text" name="text1" id="edit_text1" class="form-control" placeholder=""  required>
            </div>
 
-          <div class="my-2">
-            <label for="desig">WorkPlace/ Institution<span style="color:red;"> * </span></label>
-            <input type="text" name="workplace" id="edit_workplace" class="form-control" placeholder=""  required>
-          </div>
+            @if($admin->level_workplace)
+           <div class="my-2">
+              <label for="desig">{{$admin->level_workplace}}<span style="color:red;"> * </span></label>
+              <input type="text" name="workplace" id="edit_workplace" class="form-control" placeholder=""  required>
+           </div>
+           @else @endif
 
+ 
+          @if($admin->level_current_address)
+              <div class="my-2">
+                <label for="desig">{{$admin->level_current_address}} </label>
+                <input type="text" name="current_address" id="edit_current_address" class="form-control" placeholder="">
+             </div>
+          @else @endif
+ 
+       @if($admin->level_permanent_address)       
           <div class="my-2">
-            <label for="desig">Current Address </label>
-            <input type="text" name="current_address" id="edit_current_address" class="form-control" placeholder="">
-          </div>
-
-          <div class="my-2">
-            <label for="desig">Permanent Address </label>
+            <label for="desig"> {{$admin->level_permanent_address}} </label>
             <input type="text" name="permanent_address" id="edit_permanent_address" class="form-control" placeholder="">
           </div>
-          
-           <div class="my-2">
-            <label for="desig">Facebook Link  </label>
-            <input type="text" name="fb_link" id="edit_fb_link" class="form-control" placeholder="">
+       @else @endif 
+       
+       
+       @if($admin->level_department)       
+          <div class="my-2">
+            <label for="desig"> {{$admin->level_department}} </label>
+            <input type="text" name="department" id="edit_department" class="form-control" placeholder="">
           </div>
-          
-            <div class="my-2">
-            <label for="desig">Session </label>
-            <input type="text" name="text2" id="edit_text2" class="form-control" placeholder="">
+       @else @endif   
+       
+       <div class="row">
+       @if($admin->level_union)        
+           <div class="col-lg-6 my-2">
+              <label for="lname"> {{$admin->level_union}} </label>
+               <select class="form-select" name="address_union" id="edit_address_union" aria-label="Default select example" required >
+                   <option value="">Select One</option>
+                  @foreach($union as $row)  
+                      <option value="{{$row->id}}">{{$row->dureg}}</option>
+                  @endforeach
+              </select>
           </div>
+        @else @endif   
 
-          <div class="row">
+
+        @if($admin->level_university)     
+            <div class="col-lg-6 my-2">
+              <label for="lname"> {{$admin->level_university}} </label>
+              <select class="form-select" name="university" id="edit_university" aria-label="Default select example" required >
+                <option value="">Select One</option>
+                 @foreach($university as $row)  
+                      <option value="{{$row->id}}">{{$row->dureg}}</option>
+                  @endforeach
+             </select>
+            </div>
+        @else @endif  
+        
+        
+        @if($admin->level_custom1)       
+          <div class="my-2">
+            <label for="desig"> {{$admin->level_custom1}} </label>
+            <input type="text" name="custom1" id="edit_custom1" class="form-control" placeholder="">
+          </div>
+       @else @endif 
+
+
+       @if($admin->level_custom2)       
+          <div class="my-2">
+            <label for="desig"> {{$admin->level_custom2}} </label>
+            <input type="text" name="custom2" id="edit_custom2" class="form-control" placeholder="">
+          </div>
+       @else @endif 
+
+
+       @if($admin->level_custom3)       
+          <div class="my-2">
+            <label for="desig"> {{$admin->level_custom3}} </label>
+            <input type="text" name="custom3" id="edit_custom3" class="form-control" placeholder="">
+          </div>
+       @else @endif 
+
+
+       @if($admin->level_custom4)       
+          <div class="my-2">
+            <label for="desig"> {{$admin->level_custom4}} </label>
+            <input type="text" name="custom4" id="edit_custom4" class="form-control" placeholder="">
+          </div>
+       @else @endif 
+
+
+
+
+       
+
+          
             <div class="col-lg-6 my-2">
               <label for="fname">Blood Group</label>
               <select class="form-select" name="blood" id="edit_blood" aria-label="Default select example" >
@@ -288,6 +222,10 @@
             </div>
 
 
+           
+
+
+
           </div>
 
 
@@ -299,15 +237,6 @@
                </select>
           </div>
           
-             <div class="my-2">
-            <label for="desig">Last Blood Donate date </label>
-            <input type="date" name="blood_date" id="edit_blood_date" class="form-control" placeholder="">
-        </div>
-
-        <div class="my-2">
-            <label for="desig">No of Blood Donate  </label>
-            <input type="number" name="bloodno" id="edit_bloodno" class="form-control" placeholder="">
-        </div>
           
           
 
@@ -451,6 +380,15 @@
             $("#edit_text2").val(response.data.text2);
             $("#edit_blood_date").val(response.data.blood_date);
             $("#edit_bloodno").val(response.data.bloodno);
+
+            $("#edit_custom1").val(response.data.custom1);
+            $("#edit_custom2").val(response.data.custom2);
+            $("#edit_custom3").val(response.data.custom3);
+            $("#edit_custom4").val(response.data.custom4);
+
+            $("#edit_university").val(response.data.university);
+            $("#edit_department").val(response.data.department);
+            $("#edit_address_union").val(response.data.address_union);
            
             $("#avatar").html(
               `<img src="/uploads/admin/${response.data.image}" width="100" class="img-fluid img-thumbnail">`);
@@ -544,6 +482,145 @@
 
 </script>
      
+
+
+
+
+{{-- add new employee modal start --}}
+<div class="modal fade" id="addEmployeeModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+  data-bs-backdrop="static" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add New</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form  method="POST" id="add_employee_form" enctype="multipart/form-data">
+        <div class="modal-body p-4 bg-light">
+           <ul class="text-danger"  id="add_form_errlist"></ul>
+
+           <input type="hidden" name="category" id="category" value={{$member}} class="form-control" placeholder="" >
+
+           <div class="col-lg-12">
+              <label for="fname">Serial<span style="color:red;"> * </span></label>
+              <input type="number" name="serial" id="serial" class="form-control" placeholder="" required>
+            </div>
+
+          <div class="my-2">
+                <label for="name">Name<span style="color:red;"> * </span></label>
+                <input type="text" name="name" id="name" class="form-control" placeholder=""  required>
+          </div>
+          
+          
+           <div class="my-2">
+               <label for="desig">Designation<span style="color:red;"> * </span></label>
+                <input type="text" name="text1" id="text1" class="form-control" placeholder=""  required>
+           </div>
+
+           <div class="my-2">
+               <label for="desig">WorkPlace/ Institution<span style="color:red;"> * </span></label>
+                <input type="text" name="workplace" id="workplace" class="form-control" placeholder=""  required>
+           </div>
+
+          <div class="my-2">
+            <label for="desig">Current Address </label>
+            <input type="text" name="current_address" id="current_address" class="form-control" placeholder="">
+          </div>
+          
+         
+          <div class="my-2">
+            <label for="desig">Permanent Address </label>
+            <input type="text" name="permanent_address" id="permanent_address" class="form-control" placeholder="">
+          </div>
+          
+           <div class="my-2">
+            <label for="desig">Facebook Link  </label>
+            <input type="text" name="fb_link" id="fb_link" class="form-control" placeholder="">
+          </div>
+
+          <div class="row">
+            <div class="col-lg-6 my-2">
+              <label for="fname">Blood Group</label>
+              <select class="form-select" name="blood" id="blood" aria-label="Default select example" >
+                     <option value="">Select One</option>
+                     <option value="A+">A+</option>
+                     <option value="A-">A-</option>
+                     <option value="B+">B+</option>
+                     <option value="B-">B-</option>
+                     <option value="O+">O+</option>
+                     <option value="O-">O-</option>
+                     <option value="AB+">AB+</option>
+                     <option value="AB-">AB-</option>
+                   
+             </select>
+            </div>
+
+            <div class="col-lg-6 my-2">
+              <label for="lname">Blood Group Status </label>
+              <select class="form-select" name="blood_status" id="blood_status" aria-label="Default select example"  >
+                     <option value="show">Web Show</option>
+                     <option value="hidden">Web Hidden</option>
+             </select>
+            </div>
+
+          
+            <div class="col-lg-8 my-2">
+              <label for="fname">Phone</label>
+              <input name="phone" id="phone" type="text" pattern="[0][1][3 7 6 5 8 9][0-9]{8}" title="
+				Please select Valid mobile number"  class="form-control"  />
+            </div>
+
+            <div class="col-lg-4 my-2">
+              <label for="lname">Phone Status <span style="color:red;"> * </span></label>
+              <select class="form-select" name="phone_status" id="phone_status" aria-label="Default select example"  >
+                     <option value="show">Web Show</option>
+                     <option value="hidden">Web Hidden</option>
+             </select>
+            </div>
+
+
+            <div class="col-lg-8 my-2">
+              <label for="fname">E-mail</label>
+              <input name="email" id="email" type="text"  class="form-control"  />
+            </div>
+
+            <div class="col-lg-4 my-2">
+              <label for="lname">E-mail Status</label>
+              <select class="form-select" name="email_status" id="email_status" aria-label="Default select example"  >
+                     <option value="show">Web Show</option>
+                     <option value="hidden">Web Hidden</option>
+             </select>
+            </div>
+
+
+          </div>
+
+          
+          <div class="my-2">
+             <label for="avatar">Select Image(300*300)</label>
+             <input type="file" name="image"  id="image" class="form-control" >
+          </div>
+  
+          <div class="loader">
+            <img src="{{ asset('images/abc.gif') }}" alt="" style="width: 50px;height:50px;">
+          </div>
+
+        <div class="mt-4">
+          <button type="submit" id="add_btn" class="btn btn-primary">Add </button>
+       </div>  
+
+      </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+       
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{{-- add new employee modal end --}}
+
   @else
     <h1>Page not Found</h1>
    @endif

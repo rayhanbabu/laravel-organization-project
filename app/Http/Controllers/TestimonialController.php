@@ -22,7 +22,11 @@ use Session;
 class TestimonialController extends Controller
 {
      public function index($member) {
-         return view('admin.testimonial',['member'=>$member]);
+      $admin= Admin::where('admin_name',Session::get('admin')->admin_name)->first();    
+      $union= App::where('admin_name',Session::get('admin')->admin_name)->where('category','union')->get();
+      $university= App::where('admin_name',Session::get('admin')->admin_name)->where('category','university')->get();
+           return view('admin.testimonial',['member'=>$member,'university'=>$university 
+            ,'union'=>$union,'admin'=>$admin]);
      }
 
    public function store(Request $request){
@@ -86,6 +90,8 @@ class TestimonialController extends Controller
       $testimonial->email_status=$request->input('email_status');
       $testimonial->fb_link=$request->input('fb_link');
       $testimonial->verify_status=1;
+
+   
     
        if($request->hasfile('image')){
         $file=$_FILES['image']['tmp_name'];
@@ -123,10 +129,10 @@ class TestimonialController extends Controller
 
       $admin= Admin::where('admin_name',$username)->first();
       $validator=\Validator::make($request->all(),[       
-           'name' => 'required',
-           'phone' => 'required|unique:testimonials,phone',
-           'email' => 'required|unique:testimonials,email',
-           'image' => 'image|mimes:jpeg,png,jpg|max:512000',
+            'name' => 'required',
+            'phone' => 'required|unique:testimonials,phone',
+            'email' => 'required|unique:testimonials,email',
+            'image' => 'image|mimes:jpeg,png,jpg|max:512000',
        ]);
         
   if($admin){
@@ -221,13 +227,10 @@ class TestimonialController extends Controller
            <th>Serial Number</th>
            <th>Image</th>
            <th>Name</th>
-           <th>Workplace</th>
-           <th>Session</th>
-           <th>Current Address</th>
-           <th>Permanent Address</th>
-           <th>Blood,Status </th>
-           <th>Last Blood, Donate No </th>
+           <th>Edit/View</th>
            <th>Phone, E-mail </th>
+           <th>Blood</th>
+           <th>Union</th>
            <th>Verify Status </th>
            <th>Action</th>
          </tr>
@@ -242,20 +245,18 @@ class TestimonialController extends Controller
            $comment='<a href="#"class="btn btn-danger btn-sm">Waiting</a>';
       }
            $output .= '<tr>
-           <td>' . $row->serial . '</td>
-           <td><img src="/uploads/admin/'. $row->image. '" width="70" class="img-thumbnail" alt="Image"></td>
-           <td>' . $row->name .'</td>
-           <td>' . $row->workplace. '</td>
-           <td>' . $row->text2. '</td>
-           <td>' . $row->current_address . '</td>
-           <td>' . $row->permanent_address . '</td>
-           <td>' . $row->blood .','. $row->blood_status .', '.$comment. '</td>
-           <td>' . $row->blood_date .' ,'. $row->bloodno . '</td>
-           <td>' . $row->phone .','. $row->phone_status .', '. $row->email .','. $row->email_status . '</td>
-           <td>' . $row->verify_status. '</td>
+            <td>' . $row->serial . '</td>
+            <td><img src="/uploads/admin/'. $row->image. '" width="70" class="img-thumbnail" alt="Image"></td>
+            <td>' . $row->name .'</td>
+            <td>   <a href="#" id="' . $row->id . '" class="text-success mx-1 editIcon" data-bs-toggle="modal" data-bs-target="#editEmployeeModal"><i class="bi-pencil-square h4"></i></a>
+            </td>
+            <td>' . $row->phone .', '. $row->phone_status .', '. $row->email .', '. $row->email_status . '</td>
+            <td>' . $row->blood. '</td>
+            <td>' . $row->address_union. '</td>
+         
+            <td>' . $row->verify_status. '</td>
            <td>
-           <a href="#" id="' . $row->id . '" class="text-success mx-1 editIcon" data-bs-toggle="modal" data-bs-target="#editEmployeeModal"><i class="bi-pencil-square h4"></i></a>
-
+          
            <a href="#" id="' . $row->id . '" class="text-danger mx-1 deleteIcon"><i class="bi-trash h4"></i></a>
          </td>
      </tr>';
@@ -317,6 +318,16 @@ if($validator->fails()){
          $testimonial->text2=$request->input('text2');
          $testimonial->bloodno=$request->input('bloodno');
          $testimonial->blood_date=$request->input('blood_date');
+
+         $testimonial->custom1=$request->input('custom1');
+         $testimonial->custom2=$request->input('custom2');
+         $testimonial->custom3=$request->input('custom3');
+         $testimonial->custom4=$request->input('custom4');
+   
+         $testimonial->university=$request->input('university');
+         $testimonial->department=$request->input('department');
+         $testimonial->address_union=$request->input('address_union');
+
       if($request->hasfile('image')){
          $file=$_FILES['image']['tmp_name'];
          $hw=getimagesize($file);
@@ -554,11 +565,11 @@ public function delete(Request $request) {
                return response()->json(['data'=>$data]);
           }
 
+
          public function university_view($username){     
              $data = App::where('admin_name',$username)->where('category','university')->orderBy('phone', 'asc')->get();
              return response()->json(['data'=>$data]);
           }
-
 
 
           public function apihome($username){
@@ -638,8 +649,8 @@ public function delete(Request $request) {
           
              return response()->json([
                   'admin'=>$admin,
-                'data'=>$data
-                ,'logu'=>$logu
+                  'data'=>$data
+                  ,'logu'=>$logu
            ]);
       }   
 

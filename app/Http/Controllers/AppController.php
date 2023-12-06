@@ -44,19 +44,20 @@ class AppController extends Controller
              'validate_err'=>$validator->messages(),
            ]);
      }else{
-          $dureg=$request->input('dureg');
-          $phone=$request->input('phone');
 
+           $dureg=$request->input('dureg');
+           $phone=$request->input('phone');
+           
                $app= new App;
                $app->dureg=$request->input('dureg');
                $app->phone=$request->input('phone');
-                $app->category=$request->input('category');
+               $app->category=$request->input('category');
                $app->admin_name=$admin->admin_name;
                $app->save();
-              return response()->json([
-               'status'=>200,  
-               'message'=>'Inserted Data',
-             ]);
+               return response()->json([
+                 'status'=>200,  
+                 'message'=>'Inserted Data',
+               ]);
          }
         }
       }

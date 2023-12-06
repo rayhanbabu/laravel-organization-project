@@ -8,9 +8,6 @@
                     
                      </div> 
              </div>  
-             
-  
-
                      <div class="form-group  mx-2 my-2">
                            @if(Session::has('fail'))
                    <div  class="alert alert-danger"> {{Session::get('fail')}}</div>
