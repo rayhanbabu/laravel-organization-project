@@ -131,9 +131,10 @@ class TestimonialController extends Controller
       $validator=\Validator::make($request->all(),[       
             'name' => 'required',
             'phone' => 'required|unique:testimonials,phone',
-            'email' => 'required|unique:testimonials,email',
+       
             'image' => 'image|mimes:jpeg,png,jpg|max:512000',
        ]);
+     //  'email' => 'required|unique:testimonials,email',
         
   if($admin){
     if($validator->fails()){
