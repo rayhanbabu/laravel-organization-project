@@ -180,21 +180,21 @@ class TestimonialController extends Controller
 
     
        if($request->hasfile('image')){
-        $file=$_FILES['image']['tmp_name'];
-        $hw=getimagesize($file);
-        $w=$hw[0];
-        $h=$hw[1];	 
-            if($w<310 && $h<310){
+        //$file=$_FILES['image']['tmp_name'];
+        //$hw=getimagesize($file);
+       // $w=$hw[0];
+       // $h=$hw[1];	 
+           // if($w<310 && $h<310){
              $image= $request->file('image'); 
              $new_name = rand() . '.' . $image->getClientOriginalExtension();
              $image->move(public_path('uploads/admin'), $new_name);
              $testimonial->image=$new_name;
-          }else{
-            return response()->json([
-                'status'=>'error',  
-                'message'=>'Image size must be 300*300 ',
-             ],456);
-            }
+        //  }else{
+         //   return response()->json([
+           //     'status'=>'error',  
+           //     'message'=>'Image size must be 300*300 ',
+           //  ],456);
+          //  }
         }
        $testimonial->save();
        return response()->json([
