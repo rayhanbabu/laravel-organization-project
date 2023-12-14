@@ -77,8 +77,8 @@
 
             @if($admin->level_workplace)
            <div class="my-2">
-              <label for="desig">{{$admin->level_workplace}}<span style="color:red;"> * </span></label>
-              <input type="text" name="workplace" id="edit_workplace" class="form-control" placeholder=""  required>
+              <label for="desig">{{$admin->level_workplace}}</label>
+              <input type="text" name="workplace" id="edit_workplace" class="form-control" placeholder=""  >
            </div>
            @else @endif
 
@@ -216,13 +216,7 @@
             </div>
 
 
-           
-
-
-
           </div>
-
-
                <div class="my-2">
              <label for="lname">Verify  Status</label>
                 <select class="form-select" name="verify_status" id="edit_verify_status" aria-label="Default select example"  >
