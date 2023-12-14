@@ -291,7 +291,6 @@ public function update(Request $request ){
     'serial' => 'required',
     'name' => 'required',
     'category' => 'required',
-    'workplace' => 'required',
     'image' => 'image|mimes:jpeg,png,jpg|max:512000',
   ]);
 
@@ -335,9 +334,9 @@ if($validator->fails()){
       if($request->hasfile('image')){
          $file=$_FILES['image']['tmp_name'];
          $hw=getimagesize($file);
-         $w=$hw[0];
-         $h=$hw[1];	 
-            if($w<310 && $h<310){
+           // $w=$hw[0];
+           //  $h=$hw[1];	 
+           // if($w<310 && $h<310){
              $path=public_path('uploads/admin/').$testimonial->image;
              if(File::exists($path)){
               File::delete($path);
@@ -346,13 +345,13 @@ if($validator->fails()){
              $new_name = rand() . '.' . $image->getClientOriginalExtension();
              $image->move(public_path('uploads/admin'), $new_name);
              $testimonial->image=$new_name;
-             } 
-             else{
-             return response()->json([
-                'status'=>200,  
-                'message'=>'Image size must be 300*300 ',
-              ]);
-             } 
+
+             //  } else{
+             // return response()->json([
+             //    'status'=>200,  
+             //     'message'=>'Image size must be 300*300 ',
+             //   ]);} 
+
             }  
             $testimonial->update();   
       return response()->json([
