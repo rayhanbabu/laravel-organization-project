@@ -42,12 +42,13 @@
     <div class="form-group  my-2">
          <label for="lname">category</label>
                  <select class="form-select" name="category" id="category" aria-label="Default select example"  >
-                      <option value="history">history</option>
-                      <option value="bank">bank</option>
-                      <option value="university">university</option>
-                      <option value="union">union</option>
-                 </select>
-     </div>         
+                       <option value="history">history</option>
+                       <option value="bank">bank</option>
+                       <option value="Organization_message">Organization_message</option>
+                       <option value="university">university</option>
+                       <option value="union">union</option>
+                  </select>
+       </div>         
 	  
    <div class="form-group  my-2">        
          <label><b>Text</b></label><br>
@@ -105,6 +106,7 @@
                 <select class="form-select" name="category" id="edit_category" aria-label="Default select example"  >
                       <option value="history">history</option>
                       <option value="bank">bank</option>
+                      <option value="Organization_message">Organization_message</option>
                       <option value="university">university</option>
                       <option value="union">union</option>
                 </select>

@@ -728,6 +728,17 @@ public function delete(Request $request) {
             ]);
       }
 
+      public function apiOrganization_message($username) {
+        $admin= Admin::where('admin_name',$username)->select('id','name','nameen','address','email',
+            'mobile','admin_name','header_size','resheader_size')->first();
+       $data = App::where('admin_name',$admin->admin_name)->where('category','Organization_message')->orderBy('phone', 'asc')->get();
+        
+          return response()->json([
+               'admin'=>$admin 
+               ,'data'=>$data
+           ]);
+     }
+
       public function apiadvertisement_view($username) {
         $admin= Admin::where('admin_name',$username)->select('id','name','nameen','address','email',
             'mobile','admin_name','header_size','resheader_size')->first();
