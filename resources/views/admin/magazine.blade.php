@@ -3,7 +3,7 @@
 @section($member.'_select','active')
 @section('content')
 
-@if($member=='Welcome' OR $member=='Testimonial' OR $member=='Magazine' Or $member=='Slide')
+@if($member=='Welcome' OR $member=='Advertisement' OR $member=='Magazine' Or $member=='Slide' Or $member=='Gallery')
     <div class="row mt-4 mb-3">
                <div class="col-6"> <h4 class="mt-0">{{$member}}  View</h4></div>
                      <div class="col-3">
@@ -50,11 +50,11 @@
             </div>
 
             <div class="col-lg-12">
-              <label for="fname">Title<span style="color:red;"> * </span></label>
+              <label for="fname">Title OR Link<span style="color:red;"> * </span></label>
               <input type="text" name="title" id="title" class="form-control" placeholder="" required>
             </div>
 
-         @if($member=='Slide')
+         @if($member=='Slide' OR $member=='Advertisement' Or $member=='Gallery')
                  <input type="hidden" name="text1" id="title" value="text1" class="form-control" placeholder="">
                  <input type="hidden" name="text2" id="title" class="form-control" placeholder="">
                  <input type="hidden" name="name" id="name" class="form-control" placeholder="" >
@@ -63,7 +63,7 @@
 
 
           <div class="my-2">
-                <label for="avatar">Select Image(max:1920*1080)<span style="color:red;"> * </span></label>
+                <label for="avatar">Select Image(Slider/Gallery max:1000*500),(Advertisement max:400*400) <span style="color:red;"> * </span></label>
                 <input type="file" name="image"  id="image" class="form-control" required>
           </div>
 
@@ -148,24 +148,15 @@
               <input type="text" name="title" id="edit_title" class="form-control" placeholder="" required>
             </div>
 
-           @if($member=='Slide')
+           @if($member=='Slide' || $member=='Advertisement' || $member=='Gallery')
                  <input type="hidden" name="text1" id="title" value="text1" class="form-control" placeholder="">
                  <input type="hidden" name="text2" id="title" class="form-control" placeholder="">
                  <input type="hidden" name="name" id="name" class="form-control" placeholder="" >
                  <input type="hidden" name="workplace" id="workplace" class="form-control" placeholder="" >
 
 
-            <div class="my-2">
-                 <label for="lname">Category<span style="color:red;"> * </span></label>
-                 <select class="form-select" name="text4" id="edit_text4" aria-label="Default select example"  required >
-                      <option value="Slide">Slide</option>
-                      <option value="Logu">Logu</option>
-                 </select>
-            </div>  
-
-
              <div class="my-2">
-                 <label for="avatar">Select Image(max:1920*1080)</label>
+                 <label for="avatar">Select Image(Slider/Gallery max:1000*500), (Advertisement max:400*400)</label>
                  <input type="file" name="image"  id="edit_image" class="form-control" />
              </div>
 

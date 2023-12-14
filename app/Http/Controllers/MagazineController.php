@@ -37,13 +37,15 @@ class MagazineController extends Controller
 
        if($request->input('category')=='Welcome'){
              $count=$admin->welcome_size;
-        }else if($request->input('category')=='Testimonial'){
+        }else if($request->input('category')=='Advertisement'){
              $count=$admin->testimonial_size;
         }else if($request->input('category')=='Slide'){
              $count=$admin->slide_size;
         }else if($request->input('category')=='Magazine'){
             $count=$admin->magazine_size;
-        }
+        }else if($request->input('category')=='Gallery'){
+            $count=$admin->slide_size;
+      }
 
     
        if($validator->fails()){
@@ -87,7 +89,8 @@ class MagazineController extends Controller
            if($request->hasfile('image')){
            
 
-            if($request->input('category')=='Slide'){
+            if($request->input('category')=='Slide' || $request->input('category')=='Advertisement'
+             || $request->input('category')=='Gallery'){
               $file=$_FILES['image']['tmp_name'];
               $hw=getimagesize($file);
               $w=$hw[0];
@@ -146,15 +149,13 @@ class MagazineController extends Controller
         $data = Magazine::where('category',$member)->where('admin_name',$admin->admin_name)->get();
           $output=' <h5 class="text-success"> Total Row : '.$data->count().' </h5>';	
         if ($data->count()> 0 ) {
-            if($member=='Slide'){
+            if($member=='Slide' || $member=='Advertisement' || $member=='Gallery'){
               $output .= '<table class="table table-bordered table-sm text-start align-middle">
               <thead>
                 <tr>
                   <th>Serial Number</th>
                   <th>Image</th>
                   <th>Title</th>
-                  <th>Text 1</th>
-                 <th>Category</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -164,8 +165,6 @@ class MagazineController extends Controller
                   <td>' . $row->serial . '</td>
                   <td><img src="/uploads/admin/'. $row->image. '" width="70" class="img-thumbnail" alt="Image"></td>
                   <td>' . $row->title . '</td>
-                  <td>' . $row->text1 . '</td>
-                      <td>' . $row->text4 . '</td>
                   <td>
                   <a href="#" id="' . $row->id . '" class="text-success mx-1 editIcon" data-bs-toggle="modal" data-bs-target="#editEmployeeModal"><i class="bi-pencil-square h4"></i></a>
        
@@ -233,12 +232,11 @@ class MagazineController extends Controller
 
     public function update(Request $request ){
            
-      $validator=\Validator::make($request->all(),[
-                 
+      $validator=\Validator::make($request->all(),[   
              'serial' => 'required',
-            'title' => 'required',
-            'text1' => 'required',
-            'image' => 'image|mimes:jpeg,png,jpg|max:512000',
+             'title' => 'required',
+             'text1' => 'required',
+             'image' => 'image|mimes:jpeg,png,jpg|max:512000',
       ]);
     
     if($validator->fails()){
@@ -256,10 +254,10 @@ class MagazineController extends Controller
                 $model->title=$request->input('title');
                 $model->text1=$request->input('text1');
                 $model->text2=$request->input('text2');
-                  $model->text4=$request->input('text4');
+                $model->text4=$request->input('text4');
           if($request->hasfile('image')){
 
-          if($model->category=='Slide'){
+          if($model->category=='Slide' || $model->category=='Gallery' || $model->category=='Advertisement'){
             $file=$_FILES['image']['tmp_name'];
             $hw=getimagesize($file);
             $w=$hw[0];
@@ -277,7 +275,7 @@ class MagazineController extends Controller
                 else{
                 return response()->json([
                    'status'=>200,  
-                   'message'=>'Image size must be 1920*1080 ',
+                   'message'=>'Image size must be 1000*500 ',
                  ]);
                 } 
 

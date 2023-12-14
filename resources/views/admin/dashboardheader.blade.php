@@ -44,7 +44,7 @@
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-light bg-primary text-white">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3 text-white"  href="index.html"  >amaderthikana.com</a>
+            <a class="navbar-brand ps-3 text-white"  href="#">Admin Panel </a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-5 me-lg-0 text-white" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -165,10 +165,16 @@
            Welcome 
      </a>
 
-     <a class="nav-link @yield('Testimonial_select')" href="{{url('/magazine/index/Testimonial')}}">
-        <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-           Testimonial
-     </a>
+      <a class="nav-link @yield('Advertisement_select')" href="{{url('/magazine/index/Advertisement')}}">
+         <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+            Advertisement
+      </a>
+
+
+      <a class="nav-link @yield('Gallery_select')" href="{{url('/magazine/index/Gallery')}}">
+         <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+          Gallery
+      </a>
 
 
      <a class="nav-link @yield('Magazine_select')" href="{{url('/magazine/index/Magazine')}}">
@@ -186,6 +192,8 @@
         <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
            Slider
      </a>
+
+
 
      <a class="nav-link @yield('expre_select')" href="{{url('/expre/index')}}">
      <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>

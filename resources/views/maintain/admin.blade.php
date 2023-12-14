@@ -457,7 +457,7 @@
          </div> 
 
          <div class="form-group col-sm-6  my-2">
-               <label class=""><b>Testimonial Size</b></label>
+               <label class=""><b>Advertisement Size</b></label>
                <input type="text" id="edit_testimonial_size"  name="testimonial_size" class="form-control" required>
          </div> 
 

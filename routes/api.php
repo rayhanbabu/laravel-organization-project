@@ -40,3 +40,8 @@ use App\Http\Controllers\FormController;
 
        Route::get('/{username}/union_view',[TestimonialController::class,'union_view']);
        Route::get('/{username}/university_view',[TestimonialController::class,'university_view']);
+
+       Route::get('/{username}/gallery_view',[TestimonialController::class,'apigallery_view']);
+       Route::get('/{username}/advertisement_view',[TestimonialController::class,'apiadvertisement_view']);
+
+       Route::get('/{username}/memberGetByUnion',[TestimonialController::class,'apimemberGetByUnion']);

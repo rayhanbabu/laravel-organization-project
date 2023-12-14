@@ -190,8 +190,7 @@
           
             <div class="col-lg-8 my-2">
               <label for="fname">Phone</label>
-              <input name="phone" id="edit_phone" type="text" pattern="[0][1][3 7 6 5 8 9][0-9]{8}" title="
-				Please select Valid mobile number"  class="form-control"  />
+              <input name="phone" id="edit_phone" type="text"  class="form-control"  />
             </div>
 
             <div class="col-lg-4 my-2">

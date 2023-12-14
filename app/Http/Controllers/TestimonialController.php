@@ -688,6 +688,7 @@ public function delete(Request $request) {
             ]);
       }
 
+
   public function apibank($username) {
       $admin= Admin::where('admin_name',$username)->select('id','name','nameen','address','email',
            'mobile','admin_name','header_size','resheader_size')->first();
@@ -715,6 +716,52 @@ public function delete(Request $request) {
                 ,'logu'=>$logu
             ]);
       }
+
+
+    public function apigallery_view($username) {
+         $admin= Admin::where('admin_name',$username)->select('id','name','nameen','address','email',
+             'mobile','admin_name','header_size','resheader_size')->first();
+         $data = Magazine::where('category','Gallery')->where('admin_name',$admin->admin_name)->orderBy('serial', 'asc')->get();
+         
+           return response()->json([
+                'admin'=>$admin 
+                ,'data'=>$data
+            ]);
+      }
+
+      public function apiadvertisement_view($username) {
+        $admin= Admin::where('admin_name',$username)->select('id','name','nameen','address','email',
+            'mobile','admin_name','header_size','resheader_size')->first();
+        $data = Magazine::where('category','Advertisement')->where('admin_name',$admin->admin_name)->orderBy('serial', 'asc')->get();
+        
+          return response()->json([
+               'admin'=>$admin 
+               ,'data'=>$data
+           ]);
+     }
+
+
+
+     public function apimemberGetByUnion(Request $request ,$username) {
+       $union_id=$request->union_id;
+       $member_category=$request->member_category;
+        $admin= Admin::where('admin_name',$username)->select('id','name','nameen','address','email',
+                     'mobile','admin_name','header_size','resheader_size')->first();
+        $data = testimonial::where('category',$member_category)->where('admin_name',$admin->admin_name)
+        ->where('verify_status',1)->where('address_union',$union_id)->orderBy('serial', 'asc')->get();
+        
+                  
+          return response()->json([
+              'admin'=>$admin,
+              'data'=>$data,
+              'data1'=>$union_id,
+              'data2'=>$member_category,
+             
+            
+         ]);
+
+    }
+
 
 
 
