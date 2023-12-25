@@ -47,3 +47,5 @@ use App\Http\Controllers\FormController;
        Route::get('/{username}/Organization_message',[TestimonialController::class,'apiOrganization_message']);
 
        Route::get('/{username}/memberGetByUnion',[TestimonialController::class,'apimemberGetByUnion']);
+
+       Route::get('/{username}/committee_view/{category2}',[TestimonialController::class,'apicommittee_view']);

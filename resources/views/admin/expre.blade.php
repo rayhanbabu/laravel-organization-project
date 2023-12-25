@@ -4,7 +4,7 @@
 @section('content')
 
 <div class="row mt-4 mb-3">
-               <div class="col-6"> <h4 class="mt-0">Ex President / Secretary View</h4></div>
+               <div class="col-6"> <h5 class="mt-0"> Ex-President / Secretary View</h5></div>
                      <div class="col-3">
                          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                             
@@ -67,14 +67,11 @@
 
 
             <div class="my-2">
-             <label for="desig">From Date<span style="color:red;"> * </span></label>
-             <input type="date" name="date1" id="date1" class="form-control" placeholder=""  required>
+             <label for="desig">Term of office<span style="color:red;"> * </span></label>
+             <input type="text" name="date1" id="date1" class="form-control" placeholder=""  required>
           </div>
 
-          <div class="my-2">
-             <label for="desig">To Date<span style="color:red;"> * </span></label>
-             <input type="date" name="date2" id="date2" class="form-control" placeholder=""  required>
-          </div>
+         
 
           <div class="my-2">
              <label for="avatar">Select Image(300*300)</label>
@@ -148,14 +145,11 @@
 
 
             <div class="my-2">
-             <label for="desig">From Date<span style="color:red;"> * </span></label>
-             <input type="date" name="date1" id="edit_date1" class="form-control" placeholder=""  required>
+             <label for="desig">Term of office<span style="color:red;"> * </span></label>
+             <input type="text" name="date1" id="edit_date1" class="form-control" placeholder=""  required>
           </div>
 
-          <div class="my-2">
-             <label for="desig">To Date<span style="color:red;"> * </span></label>
-             <input type="date" name="date2" id="edit_date2" class="form-control" placeholder=""  required>
-          </div>
+
 
           <div class="my-2">
              <label for="avatar">Select Image(300*300)</label>

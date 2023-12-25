@@ -182,6 +182,11 @@
            Magazine 
      </a>
 
+     <a class="nav-link @yield('Committee_select')" href="{{url('/magazine/index/Committee')}}">
+        <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+        Committee 
+     </a>
+
      <a class="nav-link @yield('app_select')" href="{{url('admin/app')}}">
         <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
           History /bank/ Category

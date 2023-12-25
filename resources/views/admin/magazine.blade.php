@@ -3,9 +3,10 @@
 @section($member.'_select','active')
 @section('content')
 
-@if($member=='Welcome' OR $member=='Advertisement' OR $member=='Magazine' Or $member=='Slide' Or $member=='Gallery')
+@if($member=='Welcome' OR $member=='Advertisement' OR $member=='Magazine' Or 
+   $member=='Slide' Or $member=='Gallery'  Or $member=='Committee')
     <div class="row mt-4 mb-3">
-               <div class="col-6"> <h4 class="mt-0">{{$member}}  View</h4></div>
+               <div class="col-6"> <h5 class="mt-0">{{$member}}  View</h5></div>
                      <div class="col-3">
                          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                             
@@ -67,8 +68,33 @@
                 <input type="file" name="image"  id="image" class="form-control" required>
           </div>
 
+         @elseif($member=='Committee')    
+              <input type="hidden" name="text1" id="title" value="text1" class="form-control" placeholder="">
+                     <input type="hidden" name="text2" id="title" class="form-control" placeholder="">
+                     <input type="hidden" name="name" id="name" class="form-control" placeholder="" >
+                     <input type="hidden" name="workplace" id="workplace" class="form-control" placeholder="" >
+            
 
-        @else
+               <div class="col-lg-12">
+                  <label for="fname">Hours of work</label>
+                  <input type="text" name="text4" id="text4" class="form-control" placeholder="" >
+              </div>
+
+
+            <div class="my-2">
+                <label for="lname">Select Category<span style="color:red;"> * </span></label>
+                 <select class="form-select" name="category2" id="category2" aria-label="Default select example"  required >
+                     <option value="1">Central Committee (1)</option>
+                     <option value="2">Branch Committee (2)</option>
+                   
+                 </select>
+           </div>     
+    
+                 <div class="my-2">
+                     <label for="avatar">Select Pdf</label>
+                     <input type="file" name="image"  id="image" class="form-control" />
+                 </div>
+         @else
           <div class="my-2">
             <label for="desig">Text 1<span style="color:red;"> * </span></label>
             <textarea name="text1" id="text1" col="10" rows="4"  class="form-control" ></textarea>
@@ -160,9 +186,35 @@
                  <input type="file" name="image"  id="edit_image" class="form-control" />
              </div>
 
-          @else    
-            
+          @elseif($member=='Committee')   
+              
+          <input type="hidden" name="text1" id="title" value="text1" class="form-control" placeholder="">
+                 <input type="hidden" name="text2" id="title" class="form-control" placeholder="">
+                 <input type="hidden" name="name" id="name" class="form-control" placeholder="" >
+                 <input type="hidden" name="workplace" id="workplace" class="form-control" placeholder="" >
 
+             <div class="col-lg-12">
+                  <label for="fname">Hours of work</label>
+                  <input type="text" name="text4" id="edit_text4" class="form-control" placeholder="" >
+              </div>
+
+                 <div class="my-2">
+                <label for="lname">Select Category<span style="color:red;"> * </span></label>
+                 <select class="form-select" name="category2" id="edit_category2" aria-label="Default select example"  required >
+                     <option value="1">Central Committee (1)</option>
+                     <option value="2">Branch Committee (2)</option>
+                   
+                 </select>
+           </div>     
+
+
+             <div class="my-2">
+                 <label for="avatar">Select Pdf</label>
+                 <input type="file" name="image"  id="edit_image" class="form-control" />
+             </div>
+
+                 
+          @else    
           <div class="my-2">
             <label for="desig">Text 1<span style="color:red;"> * </span></label>
             <textarea name="text1" id="edit_text1" col="10" rows="4"  class="form-control" ></textarea>
@@ -312,6 +364,7 @@
             $("#edit_text1").val(response.data.text1);
             $("#edit_text2").val(response.data.text2);
             $("#edit_text4").val(response.data.text4);
+            $("#edit_category2").val(response.data.category2);
     
             $("#avatar").html(
                 `<img src="/uploads/admin/${response.data.image}" width="100" class="img-fluid img-thumbnail">`);

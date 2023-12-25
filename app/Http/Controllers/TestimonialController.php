@@ -17,7 +17,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Lang;
 use DB;
 use Cookie;
-use Session;
+use Illuminate\Support\Facades\Session;
 
 class TestimonialController extends Controller
 {
@@ -597,10 +597,6 @@ public function delete(Request $request) {
                    ]);
              }
 
-
-        
-        
-
      public function apimember($username,$member) {
       $admin= Admin::where('admin_name',$username)->select('id','name','nameen','address','email',
                      'mobile','admin_name','header_size','resheader_size')->first();
@@ -664,14 +660,15 @@ public function delete(Request $request) {
           $data1 = expre::where('category','President')->where('admin_name',$admin->admin_name)->orderBy('serial', 'asc')->get();
           $data2 = expre::where('category','Secretary')->where('admin_name',$admin->admin_name)->orderBy('serial', 'asc')->get();
           $logu = Magazine::where('category','Slide')->where('text4','Logu')->where('admin_name',$admin->admin_name)->first();
-          
-          return response()->json([
+          $data = expre::where('admin_name',$admin->admin_name)->orderBy('serial','desc')->get();
+             return response()->json([
                   'admin'=>$admin 
+                   ,'data'=>$data
                    ,'data1'=>$data1
-                  ,'data2'=>$data2
+                   ,'data2'=>$data2
                   ,'logu'=>$logu
-           ]);
-    }
+              ]);
+       }
 
 
     public function apihistory($username) {
@@ -749,6 +746,19 @@ public function delete(Request $request) {
                ,'data'=>$data
            ]);
      }
+
+
+     public function apicommittee_view($username,$category2) {
+       $admin= Admin::where('admin_name',$username)->select('id','name','nameen','address','email',
+          'mobile','admin_name','header_size','resheader_size')->first();
+        $data = Magazine::where('category','Committee')->where('category2',$category2)
+            ->where('admin_name',$admin->admin_name)->orderBy('serial', 'desc')->get();
+      
+        return response()->json([
+             'admin'=>$admin 
+             ,'data'=>$data
+         ]);
+   }
 
 
 

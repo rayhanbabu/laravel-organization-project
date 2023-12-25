@@ -212,7 +212,7 @@ Route::middleware('AdminIs')->group(function(){
         Route::get('/form/customize', [FormController::class,'customize']);
         Route::post('/form/customize_update', [FormController::class,'customize_update']);
         Route::get('/form/data', [FormController::class,'form_data']);
-         Route::post('/form/form_update', [FormController::class,'form_update']);
+        Route::post('/form/form_update', [FormController::class,'form_update']);
         Route::get('admin/form_delete/{id}', [FormController::class,'form_delete']);
 
 

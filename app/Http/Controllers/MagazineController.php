@@ -31,21 +31,24 @@ class MagazineController extends Controller
             'title' => 'required',
             'category' => 'required',
             'text1' => 'required',
-            'image' => 'image|mimes:jpeg,png,jpg|max:716800',
+            'image' => 'mimes:jpeg,png,jpg,pdf|max:716800',
          ]);
 
 
        if($request->input('category')=='Welcome'){
-             $count=$admin->welcome_size;
+             $count=$admin->magazine_size;
         }else if($request->input('category')=='Advertisement'){
-             $count=$admin->testimonial_size;
+             $count=$admin->magazine_size;
         }else if($request->input('category')=='Slide'){
-             $count=$admin->slide_size;
+             $count=$admin->magazine_size;
         }else if($request->input('category')=='Magazine'){
             $count=$admin->magazine_size;
         }else if($request->input('category')=='Gallery'){
-            $count=$admin->slide_size;
-      }
+             $count=$admin->magazine_size;
+      }else if($request->input('category')=='Committee'){
+              $count=$admin->magazine_size;
+          }
+
 
     
        if($validator->fails()){
@@ -67,12 +70,10 @@ class MagazineController extends Controller
             ]);
 
          }else if($data1>=$count){
-          
            return response()->json([
                'status'=>600,
                'errors'=> 'Row Insert Permision is '.$count. '. More Details Contact service Provider',
            ]); 
- 
         }else{
           $model= new Magazine;
           $model->serial=$request->input('serial');
@@ -83,6 +84,8 @@ class MagazineController extends Controller
           $model->title=$request->input('title');
           $model->text1=$request->input('text1');
           $model->text2=$request->input('text2');
+          $model->text4=$request->input('text4');
+          $model->category2=$request->input('category2');
           
           
         
@@ -106,6 +109,12 @@ class MagazineController extends Controller
                     'message'=>'Image size must be 1920*1080 ',
                    ]);
                   }
+
+            }else if($request->input('category')=='Committee'){
+                $image= $request->file('image'); 
+                $new_name = rand() . '.' .$image->getClientOriginalExtension();
+                $image->move(public_path('uploads/admin'),$new_name);
+                $model->image=$new_name;
 
             }else{
             $file=$_FILES['image']['tmp_name'];
@@ -146,7 +155,7 @@ class MagazineController extends Controller
        public function fetchAll($member) {
         if(Session::has('admin')){
         $admin= Admin::where('admin_name',Session::get('admin')->admin_name)->first();
-        $data = Magazine::where('category',$member)->where('admin_name',$admin->admin_name)->get();
+        $data = Magazine::where('category',$member)->where('admin_name',$admin->admin_name)->orderBy('serial','desc')->get();
           $output=' <h5 class="text-success"> Total Row : '.$data->count().' </h5>';	
         if ($data->count()> 0 ) {
             if($member=='Slide' || $member=='Advertisement' || $member=='Gallery'){
@@ -174,7 +183,39 @@ class MagazineController extends Controller
             }
               $output .= '</tbody></table>';
               echo $output;
-            }else{
+
+          }else if($member=='Committee'){
+            $output .= '<table class="table table-bordered table-sm text-start align-middle">
+            <thead>
+              <tr>
+                <th>Serial Number</th>
+                <th>View Details</th>
+                <th>Title</th>
+                <th>Hours of work </th>
+                <th>Category</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>';
+            foreach ($data as $row) {
+                $output .= '<tr>
+                <td>' . $row->serial . '</td>
+                <td> <a href="/uploads/admin/'.$row->image.'">View Details</a></td>
+                <td>' . $row->title . '</td>
+                <td>' . $row->text4 . '</td>
+                <td>' . $row->category2 . '</td>
+                <td>
+                <a href="#" id="' . $row->id . '" class="text-success mx-1 editIcon" data-bs-toggle="modal" data-bs-target="#editEmployeeModal"><i class="bi-pencil-square h4"></i></a>
+     
+                <a href="#" id="' . $row->id . '" class="text-danger mx-1 deleteIcon"><i class="bi-trash h4"></i></a>
+              </td>
+          </tr>';
+          }
+            $output .= '</tbody></table>';
+            echo $output;
+              
+
+          }else{
            $output .= '<table class="table table-bordered table-sm text-start align-middle">
            <thead>
              <tr>
@@ -255,8 +296,8 @@ class MagazineController extends Controller
                 $model->text1=$request->input('text1');
                 $model->text2=$request->input('text2');
                 $model->text4=$request->input('text4');
+                $model->category2=$request->input('category2');
           if($request->hasfile('image')){
-
           if($model->category=='Slide' || $model->category=='Gallery' || $model->category=='Advertisement'){
             $file=$_FILES['image']['tmp_name'];
             $hw=getimagesize($file);
@@ -280,7 +321,6 @@ class MagazineController extends Controller
                 } 
 
            }else{
-
              $file=$_FILES['image']['tmp_name'];
              $hw=getimagesize($file);
              $w=$hw[0];

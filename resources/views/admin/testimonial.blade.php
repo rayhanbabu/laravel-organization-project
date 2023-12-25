@@ -76,11 +76,11 @@
            </div>
 
             @if($admin->level_workplace)
-           <div class="my-2">
-              <label for="desig">{{$admin->level_workplace}}</label>
-              <input type="text" name="workplace" id="edit_workplace" class="form-control" placeholder=""  >
-           </div>
-           @else @endif
+               <div class="my-2">
+                  <label for="desig">{{$admin->level_workplace}}</label>
+                  <input type="text" name="workplace" id="edit_workplace" class="form-control" placeholder=""  >
+               </div>
+             @else @endif
 
  
           @if($admin->level_current_address)

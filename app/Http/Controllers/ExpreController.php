@@ -8,8 +8,8 @@ use App\Models\Admin;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\validator;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Session;
 use DB;
-use Session;
 
 class ExpreController extends Controller
 {
@@ -98,8 +98,7 @@ class ExpreController extends Controller
             <th>Image</th>
             <th>Name</th>
             <th>Category </th>
-            <th>From date </th>
-            <th>To date </th>
+            <th>Term of office</th>
             <th>Action</th>
          </tr>
        </thead>
@@ -114,7 +113,6 @@ class ExpreController extends Controller
            <td>' . $row->name . '</td>
            <td>' . $row->category . '</td>
            <td>' . $row->date1 . '</td>
-           <td>' . $row->date2 . '</td>
            <td>
            <a href="#" id="' . $row->id . '" class="text-success mx-1 editIcon" data-bs-toggle="modal" data-bs-target="#editEmployeeModal"><i class="bi-pencil-square h4"></i></a>
 
