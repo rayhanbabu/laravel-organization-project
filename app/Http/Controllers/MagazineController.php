@@ -31,7 +31,7 @@ class MagazineController extends Controller
             'title' => 'required',
             'category' => 'required',
             'text1' => 'required',
-            'image' => 'mimes:jpeg,png,jpg,pdf|max:716800',
+            'image' => 'mimes:jpeg,png,jpg,pdf|max:816800',
          ]);
 
 
@@ -90,7 +90,6 @@ class MagazineController extends Controller
           
         
            if($request->hasfile('image')){
-           
 
             if($request->input('category')=='Slide' || $request->input('category')=='Advertisement'
              || $request->input('category')=='Gallery'){
@@ -152,7 +151,7 @@ class MagazineController extends Controller
    }
 
 
-       public function fetchAll($member) {
+    public function fetchAll($member) {
         if(Session::has('admin')){
         $admin= Admin::where('admin_name',Session::get('admin')->admin_name)->first();
         $data = Magazine::where('category',$member)->where('admin_name',$admin->admin_name)->orderBy('serial','desc')->get();
@@ -162,23 +161,23 @@ class MagazineController extends Controller
               $output .= '<table class="table table-bordered table-sm text-start align-middle">
               <thead>
                 <tr>
-                  <th>Serial Number</th>
-                  <th>Image</th>
-                  <th>Title</th>
-                  <th>Action</th>
+                   <th>Serial Number</th>
+                   <th>Image</th>
+                   <th>Title</th>
+                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>';
               foreach ($data as $row) {
                   $output .= '<tr>
-                  <td>' . $row->serial . '</td>
-                  <td><img src="/uploads/admin/'. $row->image. '" width="70" class="img-thumbnail" alt="Image"></td>
-                  <td>' . $row->title . '</td>
-                  <td>
-                  <a href="#" id="' . $row->id . '" class="text-success mx-1 editIcon" data-bs-toggle="modal" data-bs-target="#editEmployeeModal"><i class="bi-pencil-square h4"></i></a>
+                   <td>' . $row->serial . '</td>
+                   <td><img src="/uploads/admin/'. $row->image. '" width="70" class="img-thumbnail" alt="Image"></td>
+                   <td>' . $row->title . '</td>
+                   <td>
+                      <a href="#" id="' . $row->id . '" class="text-success mx-1 editIcon" data-bs-toggle="modal" data-bs-target="#editEmployeeModal"><i class="bi-pencil-square h4"></i></a>
        
-                  <a href="#" id="' . $row->id . '" class="text-danger mx-1 deleteIcon"><i class="bi-trash h4"></i></a>
-                </td>
+                     <a href="#" id="' . $row->id . '" class="text-danger mx-1 deleteIcon"><i class="bi-trash h4"></i></a>
+                 </td>
             </tr>';
             }
               $output .= '</tbody></table>';

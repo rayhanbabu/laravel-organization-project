@@ -86,7 +86,7 @@
                  <select class="form-select" name="category2" id="category2" aria-label="Default select example"  required >
                      <option value="1">Central Committee (1)</option>
                      <option value="2">Branch Committee (2)</option>
-                   
+                     <option value="3">Archive (3)</option>
                  </select>
            </div>     
     
@@ -203,6 +203,7 @@
                  <select class="form-select" name="category2" id="edit_category2" aria-label="Default select example"  required >
                      <option value="1">Central Committee (1)</option>
                      <option value="2">Branch Committee (2)</option>
+                     <option value="3">Archive (3)</option>
                    
                  </select>
            </div>     

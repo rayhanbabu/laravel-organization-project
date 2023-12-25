@@ -48,4 +48,6 @@ use App\Http\Controllers\FormController;
 
        Route::get('/{username}/memberGetByUnion',[TestimonialController::class,'apimemberGetByUnion']);
 
-       Route::get('/{username}/committee_view/{category2}',[TestimonialController::class,'apicommittee_view']);
+       Route::get('/{username}/committee_view/{category2}',[TestimonialController::class,'apicommittee_view']);  
+       Route::get('/{username}/PaginationMember/{member}',[TestimonialController::class,'apiPaginationMember']);
+       Route::get('/{username}/membersearch',[TestimonialController::class,'apimembersearch']);

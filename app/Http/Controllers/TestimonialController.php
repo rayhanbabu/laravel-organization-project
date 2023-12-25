@@ -784,6 +784,76 @@ public function delete(Request $request) {
 
 
 
+    public function apiPaginationMember(request $request ,$username,$member){
+    
+      $query=Testimonial::query();
+      if($search=$request->search){
+         $query->whereRaw("name LIKE '%".$search."%'")
+            ->orWhereRaw("email LIKE '%".$search."%'");
+       }
+
+    //   $data = testimonial::where('category',$member)->where('admin_name',$admin->admin_name)
+     //    ->where('verify_status',1)->orderBy('serial', 'asc')->get();    
+
+       //if($sort=$request->sort){
+              // $query->orderBy("member_card", $sort);}
+
+        
+      $perPage=$request->input('perPage',9);
+      $page=$request->input('page',1);
+     
+      $query->leftjoin('apps','apps.id','=','testimonials.address_union');
+
+      $query->where('testimonials.category',$member)->where('testimonials.admin_name',$username)
+          ->where('verify_status',1);
+
+      
+
+      $query->select('apps.dureg','testimonials.*');
+
+        $total=$query->count();
+        $query->orderBy("custom2", 'asc');
+        $query->orderBy("serial", 'asc');
+        $result=$query->offset(($page-1) * $perPage)->limit($perPage)->get();
+      
+
+      return response()->json([
+        'message'=>"Successfully fetched",
+        'data'=>$result, 
+        'total'=>$total,
+        'page'=>$page,
+        'last_page'=>ceil($total/$perPage)
+      ]);
+  }
+
+
+  public function apimembersearch(Request $request,$username) {
+    $search = $request->get('search');
+    $search = str_replace(" ", "%", $search);
+    $data=Testimonial::Where('testimonials.admin_name',$username)->where('verify_status',1)
+       ->where(function($query) use ($search) {
+        $query->where('name', 'like', '%'.$search.'%')
+            ->orWhere('university', 'like', '%'.$search.'%')
+            ->orWhere('phone', 'like', '%'.$search.'%')
+            ->orWhere('department', 'like', '%'.$search.'%')
+            ->orWhere('workplace', 'like', '%'.$search.'%')
+            ->orWhere('current_address', 'like', '%'.$search.'%')
+            ->orWhere('permanent_address', 'like', '%'.$search.'%')
+            ->orWhere('custom1', 'like', '%'.$search.'%')
+            ->orWhere('custom2', 'like', '%'.$search.'%')
+            ->orWhere('email', 'like', '%'.$search.'%');
+         })->select('testimonials.*')->orderBy('serial','asc')->orderBy('custom2','asc')->paginate(30);
+               //leftjoin('apps','apps.id','=','testimonials.address_union');
+         return response()->json([
+           'status'=>200,  
+           'data'=>$data,
+           ]);
+}
+
+
+
+
+
 
 
 
