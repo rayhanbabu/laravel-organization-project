@@ -600,8 +600,10 @@ public function delete(Request $request) {
      public function apimember($username,$member) {
       $admin= Admin::where('admin_name',$username)->select('id','name','nameen','address','email',
                      'mobile','admin_name','header_size','resheader_size')->first();
-        $data = Testimonial::where('category',$member)->where('admin_name',$admin->admin_name)
-        ->where('verify_status',1)->orderBy('custom2','asc')->orderBy('serial', 'asc')->get();
+    
+        $data = Testimonial::where('testimonials.category',$member)->where('testimonials.admin_name',$admin->admin_name)
+    ->leftjoin('apps','apps.id','=','testimonials.address_union')
+    ->select('apps.dureg as app_category','testimonials.*')->orderBy('custom2','asc')->orderBy('serial', 'asc')->get();
         $logu = Magazine::where('category','Slide')->where('text4','Logu')->where('admin_name',$admin->admin_name)->first();
                   
           return response()->json([
@@ -780,9 +782,10 @@ public function delete(Request $request) {
        $member_category=$request->member_category;
         $admin= Admin::where('admin_name',$username)->select('id','name','nameen','address','email',
                      'mobile','admin_name','header_size','resheader_size')->first();
-        $data = testimonial::where('category',$member_category)->where('admin_name',$admin->admin_name)
-        ->where('verify_status',1)->where('address_union',$union_id)->orderBy('serial', 'asc')->get();
         
+        $data = Testimonial::where('testimonials.address_union',$union_id)->where('testimonials.admin_name',$admin->admin_name)
+        ->leftjoin('apps','apps.id','=','testimonials.address_union')
+        ->select('apps.dureg as app_category','testimonials.*')->orderBy('custom2','asc')->orderBy('serial', 'asc')->get();
                   
           return response()->json([
               'admin'=>$admin,
