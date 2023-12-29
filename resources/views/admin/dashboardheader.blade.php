@@ -99,6 +99,7 @@
          <a class="nav-link @yield('Senior_select')" href="{{url('/testimonial/index/Senior')}}">Senior Member</a>
          <a class="nav-link @yield('General_select')" href="{{url('/testimonial/index/General')}}">General Member</a>
          <a class="nav-link @yield('General_select')" href="{{url('/testimonial/index/Alumni')}}">Alumni Member</a>
+         <a class="nav-link @yield('General_select')" href="{{url('/testimonial/index/Pass')}}">Pass  Member</a>
    </nav>
  </div>
  
@@ -186,6 +187,12 @@
         <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
         Committee 
      </a>
+
+     <a class="nav-link @yield('Executive_select')" href="{{url('/magazine/index/Executive')}}">
+        <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+         Executive view
+     </a>
+
 
      <a class="nav-link @yield('app_select')" href="{{url('admin/app')}}">
         <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>

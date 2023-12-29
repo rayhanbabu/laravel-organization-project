@@ -4,7 +4,8 @@
 @section('content')
 
 
-   @if($member=='Executive' OR $member=='General' OR $member=='Advisor' Or $member=='Senior' Or $member=='Alumni')
+   @if($member=='Executive' OR $member=='General' OR $member=='Advisor' Or 
+   $member=='Senior' Or $member=='Alumni'  Or $member=='Pass')
 
      <div class="row mt-4 mb-3">
            <div class="col-6"> <h4 class="mt-0">{{$member}} Member View</h4></div>
@@ -60,7 +61,8 @@
                      <option value="Advisor">Advisor</option>
                      <option value="Senior">Senior</option>
                      <option value="General">General</option>
-                      <option value="Alumni">Alumni</option>
+                     <option value="Alumni">Alumni</option>
+                     <option value="Pass">Pass</option>
              </select>
             </div>
           </div>

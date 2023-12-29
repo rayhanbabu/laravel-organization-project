@@ -51,3 +51,5 @@ use App\Http\Controllers\FormController;
        Route::get('/{username}/committee_view/{category2}',[TestimonialController::class,'apicommittee_view']);  
        Route::get('/{username}/PaginationMember/{member}',[TestimonialController::class,'apiPaginationMember']);
        Route::get('/{username}/membersearch',[TestimonialController::class,'apimembersearch']);
+       Route::get('/{username}/executive_view',[TestimonialController::class,'apiexecutive_view']);  
+

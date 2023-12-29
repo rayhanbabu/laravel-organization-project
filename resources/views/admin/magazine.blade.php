@@ -4,7 +4,7 @@
 @section('content')
 
 @if($member=='Welcome' OR $member=='Advertisement' OR $member=='Magazine' Or 
-   $member=='Slide' Or $member=='Gallery'  Or $member=='Committee')
+   $member=='Slide' Or $member=='Gallery'  Or $member=='Committee' Or $member=='Executive')
     <div class="row mt-4 mb-3">
                <div class="col-6"> <h5 class="mt-0">{{$member}}  View</h5></div>
                      <div class="col-3">
@@ -51,7 +51,7 @@
             </div>
 
             <div class="col-lg-12">
-              <label for="fname">Title OR Link<span style="color:red;"> * </span></label>
+              <label for="fname">Title or Link or Designation <span style="color:red;"> * </span></label>
               <input type="text" name="title" id="title" class="form-control" placeholder="" required>
             </div>
 
@@ -61,7 +61,7 @@
                  <input type="hidden" name="name" id="name" class="form-control" placeholder="" >
                  <input type="hidden" name="text4" id="title" class="form-control" value="Slide">
                  <input type="hidden" name="workplace" id="workplace" class="form-control" placeholder="" >
-
+                 <input type="hidden" name="category2" id="title" class="form-control" value="0" placeholder="">
 
           <div class="my-2">
                 <label for="avatar">Select Image(Slider/Gallery max:1000*500),(Advertisement max:400*400) <span style="color:red;"> * </span></label>
@@ -73,7 +73,7 @@
                      <input type="hidden" name="text2" id="title" class="form-control" placeholder="">
                      <input type="hidden" name="name" id="name" class="form-control" placeholder="" >
                      <input type="hidden" name="workplace" id="workplace" class="form-control" placeholder="" >
-            
+                     <input type="hidden" name="category2" id="title" class="form-control" value="0" placeholder="">
 
                <div class="col-lg-12">
                   <label for="fname">Hours of work</label>
@@ -87,6 +87,7 @@
                      <option value="1">Central Committee (1)</option>
                      <option value="2">Branch Committee (2)</option>
                      <option value="3">Archive (3)</option>
+                     <option value="4">Executive Branch Committee (4)</option>
                  </select>
            </div>     
     
@@ -94,11 +95,41 @@
                      <label for="avatar">Select Pdf</label>
                      <input type="file" name="image"  id="image" class="form-control" />
                  </div>
+        
+      @elseif($member=='Executive')    
+             <input type="hidden" name="text1" id="title" value="text1" class="form-control" placeholder="">
+             <input type="hidden" name="text2" id="title" class="form-control" placeholder="">
+             <input type="hidden" name="name" id="name" class="form-control" placeholder="" >
+             <input type="hidden" name="workplace" id="workplace" class="form-control" placeholder="" >
+            
+          <input type="hidden" name="category2" id="title" class="form-control" value="0" placeholder="">
+ 
+           <div class="col-sm-12 my-2">
+              <label for="name">Name<span style="color:red;"> * </span></label>
+              <input type="text" name="name" id="name" class="form-control" placeholder=""  required>
+          </div>  
+
+          <div class="col-lg-12">
+                  <label for="fname"> University </label>
+                  <input type="text" name="text4" id="text4" class="form-control" placeholder="" >
+              </div>
+
+              <div class="my-2">
+             <label for="avatar">Select Image(300*300)</label>
+             <input type="file" name="image"  id="image" class="form-control" >
+          </div>
+
+
+
+  
+             
          @else
           <div class="my-2">
             <label for="desig">Text 1<span style="color:red;"> * </span></label>
             <textarea name="text1" id="text1" col="10" rows="4"  class="form-control" ></textarea>
           </div>
+
+          <input type="hidden" name="category2" id="title" class="form-control" value="0" placeholder="">
 
           <div class="my-2">
             <label for="desig">Text 2  </label>
@@ -170,7 +201,7 @@
            </div>
 
            <div class="col-lg-12">
-              <label for="fname">Title<span style="color:red;"> * </span></label>
+               <label for="fname">Title or Link or Designation <span style="color:red;"> * </span></label>
               <input type="text" name="title" id="edit_title" class="form-control" placeholder="" required>
             </div>
 
@@ -179,8 +210,7 @@
                  <input type="hidden" name="text2" id="title" class="form-control" placeholder="">
                  <input type="hidden" name="name" id="name" class="form-control" placeholder="" >
                  <input type="hidden" name="workplace" id="workplace" class="form-control" placeholder="" >
-
-
+               
              <div class="my-2">
                  <label for="avatar">Select Image(Slider/Gallery max:1000*500), (Advertisement max:400*400)</label>
                  <input type="file" name="image"  id="edit_image" class="form-control" />
@@ -192,7 +222,7 @@
                  <input type="hidden" name="text2" id="title" class="form-control" placeholder="">
                  <input type="hidden" name="name" id="name" class="form-control" placeholder="" >
                  <input type="hidden" name="workplace" id="workplace" class="form-control" placeholder="" >
-
+                
              <div class="col-lg-12">
                   <label for="fname">Hours of work</label>
                   <input type="text" name="text4" id="edit_text4" class="form-control" placeholder="" >
@@ -201,10 +231,10 @@
                  <div class="my-2">
                 <label for="lname">Select Category<span style="color:red;"> * </span></label>
                  <select class="form-select" name="category2" id="edit_category2" aria-label="Default select example"  required >
-                     <option value="1">Central Committee (1)</option>
-                     <option value="2">Branch Committee (2)</option>
+                     <option value="1">Former Central Committee (1)</option>
+                     <option value="2">Former Branch Committee (2)</option>
                      <option value="3">Archive (3)</option>
-                   
+                     <option value="4">Executive Branch Committee (4)</option>
                  </select>
            </div>     
 
@@ -214,12 +244,38 @@
                  <input type="file" name="image"  id="edit_image" class="form-control" />
              </div>
 
-                 
+
+             @elseif($member=='Executive')    
+                    <input type="hidden" name="text1" id="title" value="text1" class="form-control" placeholder="">
+                     <input type="hidden" name="text2" id="title" class="form-control" placeholder="">
+                     <input type="hidden" name="name" id="name" class="form-control" placeholder="" >
+                     <input type="hidden" name="workplace" id="workplace" class="form-control" placeholder="" >
+            
+                 <input type="hidden" name="category2" id="title" class="form-control" value="0" placeholder="">
+    
+           <div class="col-sm-12 my-2">
+              <label for="name">Name<span style="color:red;"> * </span></label>
+              <input type="text" name="name" id="edit_name" class="form-control" placeholder=""  required>
+          </div>  
+
+
+          <div class="col-lg-12">
+                  <label for="fname"> University </label>
+                  <input type="text" name="text4" id="edit_text4" class="form-control" placeholder="" >
+              </div>
+
+              <div class="my-2">
+             <label for="avatar">Select Image(300*300)</label>
+             <input type="file" name="image"  id="image" class="form-control" >
+          </div>
+   
           @else    
           <div class="my-2">
             <label for="desig">Text 1<span style="color:red;"> * </span></label>
             <textarea name="text1" id="edit_text1" col="10" rows="4"  class="form-control" ></textarea>
           </div>
+
+        
 
           <div class="my-2">
             <label for="desig">Text 2  </label>

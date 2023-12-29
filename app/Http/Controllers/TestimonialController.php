@@ -471,10 +471,10 @@ public function delete(Request $request) {
 
       public function webmember($member) {
          if(Cookie::has('cook_user')){
-             $cook_user=Cookie::get('cook_user');
-              $admin= Admin::where('admin_name',$cook_user)->select('id','name','nameen','address','email',
+               $cook_user=Cookie::get('cook_user');
+               $admin= Admin::where('admin_name',$cook_user)->select('id','name','nameen','address','email',
                      'mobile','admin_name','header_size','resheader_size')->first();
-             $data = testimonial::where('category',$member)->where('admin_name',$admin->admin_name)->orderBy('serial', 'asc')->get();
+               $data = testimonial::where('category',$member)->where('admin_name',$admin->admin_name)->orderBy('serial', 'asc')->get();
              return view('web.member',['admin'=>$admin,'data'=>$data,'member'=>$member]);
          }else{
              return redirect('/web/search');   
@@ -600,8 +600,8 @@ public function delete(Request $request) {
      public function apimember($username,$member) {
       $admin= Admin::where('admin_name',$username)->select('id','name','nameen','address','email',
                      'mobile','admin_name','header_size','resheader_size')->first();
-        $data = testimonial::where('category',$member)->where('admin_name',$admin->admin_name)
-        ->where('verify_status',1)->orderBy('serial', 'asc')->get();
+        $data = Testimonial::where('category',$member)->where('admin_name',$admin->admin_name)
+        ->where('verify_status',1)->orderBy('custom2','asc')->orderBy('serial', 'asc')->get();
         $logu = Magazine::where('category','Slide')->where('text4','Logu')->where('admin_name',$admin->admin_name)->first();
                   
           return response()->json([
@@ -759,6 +759,19 @@ public function delete(Request $request) {
              ,'data'=>$data
          ]);
    }
+
+
+   public function apiexecutive_view($username) {
+    $admin= Admin::where('admin_name',$username)->select('id','name','nameen','address','email',
+        'mobile','admin_name','header_size','resheader_size')->first();
+    $data = Magazine::where('category','Executive')->where('admin_name',$admin->admin_name)->orderBy('serial', 'asc')->get();
+    
+      return response()->json([
+           'admin'=>$admin 
+           ,'data'=>$data
+       ]);
+ }
+
 
 
 

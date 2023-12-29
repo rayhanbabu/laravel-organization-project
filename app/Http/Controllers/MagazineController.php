@@ -27,7 +27,7 @@ class MagazineController extends Controller
       if(Session::has('admin')){
        $admin= Admin::where('admin_name',Session::get('admin')->admin_name)->first();
         $validator=\Validator::make($request->all(),[                 
-            'serial' => 'required',
+            'serial' => 'required|numeric',
             'title' => 'required',
             'category' => 'required',
             'text1' => 'required',
@@ -46,8 +46,10 @@ class MagazineController extends Controller
         }else if($request->input('category')=='Gallery'){
              $count=$admin->magazine_size;
       }else if($request->input('category')=='Committee'){
-              $count=$admin->magazine_size;
-          }
+              $count=$admin->magazine_size; 
+          }else if($request->input('category')=='Executive'){
+            $count=$admin->magazine_size;
+        }
 
 
     
@@ -214,7 +216,41 @@ class MagazineController extends Controller
             echo $output;
               
 
-          }else{
+          }
+          else if($member=='Executive'){
+            $output .= '<table class="table table-bordered table-sm text-start align-middle">
+            <thead>
+              <tr>
+                <th>Serial Number</th>
+                <th>Image</th>
+                <th>Designation</th>
+                <th>Name</th>
+                <th>University</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>';
+            foreach ($data as $row) {
+                $output .= '<tr>
+                <td>' . $row->serial . '</td>
+                <td><img src="/uploads/admin/'. $row->image. '" width="70" class="img-thumbnail" alt="Image"></td>
+                <td>' . $row->title . '</td>
+                <td>' . $row->name . '</td>
+                <td>' . $row->text4 . '</td>
+                <td>
+                <a href="#" id="' . $row->id . '" class="text-success mx-1 editIcon" data-bs-toggle="modal" data-bs-target="#editEmployeeModal"><i class="bi-pencil-square h4"></i></a>
+     
+                <a href="#" id="' . $row->id . '" class="text-danger mx-1 deleteIcon"><i class="bi-trash h4"></i></a>
+              </td>
+          </tr>';
+          }
+            $output .= '</tbody></table>';
+            echo $output;
+              
+
+          }
+          
+          else{
            $output .= '<table class="table table-bordered table-sm text-start align-middle">
            <thead>
              <tr>
