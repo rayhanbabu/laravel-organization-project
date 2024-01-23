@@ -233,8 +233,7 @@ class TestimonialController extends Controller
            <th>Edit/View</th>
            <th>Phone, E-mail </th>
            <th>Blood</th>
-           <th>Union</th>
-           <th>University</th>
+           <th>Custom Value</th>
            <th>Verify Status </th>
            <th>Action</th>
          </tr>
@@ -257,7 +256,6 @@ class TestimonialController extends Controller
             <td>' . $row->phone .', '. $row->phone_status .', '. $row->email .', '. $row->email_status . '</td>
             <td>' . $row->blood. '</td>
             <td>' . $row->app_category. '</td>
-            <td>' . $row->university. '</td>
             <td>' . $row->verify_status. '</td>
            <td>
           
@@ -792,8 +790,6 @@ public function delete(Request $request) {
               'data'=>$data,
               'data1'=>$union_id,
               'data2'=>$member_category,
-             
-            
          ]);
 
     }

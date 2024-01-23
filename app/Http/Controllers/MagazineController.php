@@ -331,7 +331,10 @@ class MagazineController extends Controller
                 $model->text1=$request->input('text1');
                 $model->text2=$request->input('text2');
                 $model->text4=$request->input('text4');
-                $model->category2=$request->input('category2');
+                if($request->input('category2')){
+                  $model->category2=$request->input('category2');
+                }
+              
           if($request->hasfile('image')){
           if($model->category=='Slide' || $model->category=='Gallery' || $model->category=='Advertisement'){
             $file=$_FILES['image']['tmp_name'];

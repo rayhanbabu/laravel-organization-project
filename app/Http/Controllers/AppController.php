@@ -129,14 +129,20 @@ class AppController extends Controller
     {
      if($request->ajax())
      {
+
+        if(Session::has('admin')){
+          $admin= Admin::where('admin_name',Session::get('admin')->admin_name)->first();
+        }
+
       $sort_by = $request->get('sortby');
       $sort_type = $request->get('sorttype'); 
             $search = $request->get('search');
             $search = str_replace(" ", "%", $search);
-      $data = App::where('dureg', 'like', '%'.$search.'%')
-                    ->orWhere('phone', 'like', '%'.$search.'%')
-                    ->orderBy($sort_by, $sort_type)
-                    ->paginate(15);
+            $data = App::where('admin_name',$admin->admin_name)
+                    ->where(function($query) use ($search) {
+                         $query->where('phone', 'like', '%'.$search.'%')
+                           ->orWhere('id', 'like', '%'.$search.'%');
+                      })->orderBy($sort_by, $sort_type)->paginate(10);              
                     return view('admin.app_data', compact('data'))->render();
                    
      }
