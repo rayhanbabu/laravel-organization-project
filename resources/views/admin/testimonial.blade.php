@@ -68,12 +68,12 @@
           </div>
 
           <div class="my-2">
-            <label for="name">নাম  </label>
+            <label for="name">Name  </label>
             <input type="text" name="name" id="edit_name" class="form-control" placeholder=""required >
           </div>
           
            <div class="my-2">
-               <label for="desig">পদবি <span style="color:red;"> * </span></label>
+               <label for="desig">Designation <span style="color:red;"> * </span></label>
                 <input type="text" name="text1" id="edit_text1" class="form-control" placeholder=""  required>
            </div>
 
