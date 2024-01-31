@@ -575,7 +575,7 @@ public function delete(Request $request) {
 
           public function apihome($username){
                   $admin= Admin::where('admin_name',$username)->select('id','name','nameen','address','email',
-                     'mobile','admin_name','header_size','resheader_size')->first();
+                     'mobile','admin_name','header_size','resheader_size','fb_link','youtube_link','other_link')->first();
                   $slide = Magazine::where('category','Slide')->where('admin_name',$admin->admin_name)->orderBy('serial', 'asc')->get();
                   $slide1 = Magazine::where('category','Slide')->where('text4','Slide')->where('admin_name',$admin->admin_name)->orderBy('serial', 'asc')->first();
                   $welcome = Magazine::where('category','Welcome')->where('admin_name',$admin->admin_name)->orderBy('serial', 'asc')->get();
@@ -597,8 +597,7 @@ public function delete(Request $request) {
 
      public function apimember($username,$member) {
       $admin= Admin::where('admin_name',$username)->select('id','name','nameen','address','email',
-                     'mobile','admin_name','header_size','resheader_size')->first();
-    
+                     'mobile','admin_name','header_size','resheader_size','fb_link','youtube_link','other_link')->first();
         $data = Testimonial::where('testimonials.category',$member)->where('testimonials.admin_name',$admin->admin_name)
     ->leftjoin('apps','apps.id','=','testimonials.address_union')
     ->select('apps.dureg as app_category','testimonials.*')->orderBy('custom2','asc')->orderBy('serial', 'asc')->get();
@@ -626,7 +625,7 @@ public function delete(Request $request) {
  
     public function apimagazine($username){
       $admin= Admin::where('admin_name',$username)->select('id','name','nameen','address','email',
-                     'mobile','admin_name','header_size','resheader_size')->first();
+      'mobile','admin_name','header_size','resheader_size','fb_link','youtube_link','other_link')->first();
         $data = Magazine::where('category','Magazine')->where('admin_name',$admin->admin_name)->orderBy('serial', 'asc')->get();
         $logu = Magazine::where('category','Slide')->where('text4','Logu')->where('admin_name',$admin->admin_name)->first();
           
@@ -642,7 +641,7 @@ public function delete(Request $request) {
     
      public function apinotice($username) {
       $admin= Admin::where('admin_name',$username)->select('id','name','nameen','address','email',
-                     'mobile','admin_name','header_size','resheader_size')->first();
+      'mobile','admin_name','header_size','resheader_size','fb_link','youtube_link','other_link')->first();
           $data = Notice::where('admin_name',$admin->admin_name)->orderBy('serial', 'asc')->get();
           $logu = Magazine::where('category','Slide')->where('text4','Logu')->where('admin_name',$admin->admin_name)->first();
           
@@ -656,11 +655,11 @@ public function delete(Request $request) {
 
     public function apiexpre($username) {
       $admin= Admin::where('admin_name',$username)->select('id','name','nameen','address','email',
-              'mobile','admin_name','header_size','resheader_size')->first();
+      'mobile','admin_name','header_size','resheader_size','fb_link','youtube_link','other_link')->first();
           $data1 = expre::where('category','President')->where('admin_name',$admin->admin_name)->orderBy('serial', 'asc')->get();
           $data2 = expre::where('category','Secretary')->where('admin_name',$admin->admin_name)->orderBy('serial', 'asc')->get();
           $logu = Magazine::where('category','Slide')->where('text4','Logu')->where('admin_name',$admin->admin_name)->first();
-          $data = expre::where('admin_name',$admin->admin_name)->orderBy('serial','desc')->get();
+          $data = expre::where('admin_name',$admin->admin_name)->orderBy('serial','asc')->get();
              return response()->json([
                   'admin'=>$admin 
                    ,'data'=>$data
@@ -672,8 +671,8 @@ public function delete(Request $request) {
 
 
     public function apihistory($username) {
-        $admin= Admin::where('admin_name',$username)->select('id','name','nameen','address','email',
-             'mobile','admin_name','header_size','resheader_size')->first();
+      $admin= Admin::where('admin_name',$username)->select('id','name','nameen','address','email',
+                     'mobile','admin_name','header_size','resheader_size','fb_link','youtube_link','other_link')->first();
        $data = App::where('admin_name',$admin->admin_name)->where('category','history')->orderBy('phone', 'asc')->get();
        $logu = Magazine::where('category','Slide')->where('text4','Logu')->where('admin_name',$admin->admin_name)->first();
           
@@ -686,8 +685,8 @@ public function delete(Request $request) {
 
 
   public function apibank($username) {
-      $admin= Admin::where('admin_name',$username)->select('id','name','nameen','address','email',
-           'mobile','admin_name','header_size','resheader_size')->first();
+    $admin= Admin::where('admin_name',$username)->select('id','name','nameen','address','email',
+    'mobile','admin_name','header_size','resheader_size','fb_link','youtube_link','other_link')->first();
      $data = App::where('admin_name',$admin->admin_name)->where('category','bank')->orderBy('phone', 'asc')->get();
      $logu = Magazine::where('category','Slide')->where('text4','Logu')->where('admin_name',$admin->admin_name)->first();
         
@@ -715,8 +714,8 @@ public function delete(Request $request) {
 
 
     public function apigallery_view($username) {
-         $admin= Admin::where('admin_name',$username)->select('id','name','nameen','address','email',
-             'mobile','admin_name','header_size','resheader_size')->first();
+      $admin= Admin::where('admin_name',$username)->select('id','name','nameen','address','email',
+      'mobile','admin_name','header_size','resheader_size','fb_link','youtube_link','other_link')->first();
          $data = Magazine::where('category','Gallery')->where('admin_name',$admin->admin_name)->orderBy('serial', 'asc')->get();
          
            return response()->json([
@@ -727,7 +726,7 @@ public function delete(Request $request) {
 
       public function apiOrganization_message($username) {
         $admin= Admin::where('admin_name',$username)->select('id','name','nameen','address','email',
-            'mobile','admin_name','header_size','resheader_size')->first();
+          'mobile','admin_name','header_size','resheader_size','fb_link','youtube_link','other_link')->first();
        $data = App::where('admin_name',$admin->admin_name)->where('category','Organization_message')->orderBy('phone', 'asc')->get();
         
           return response()->json([
@@ -738,7 +737,7 @@ public function delete(Request $request) {
 
       public function apiadvertisement_view($username) {
         $admin= Admin::where('admin_name',$username)->select('id','name','nameen','address','email',
-            'mobile','admin_name','header_size','resheader_size')->first();
+                     'mobile','admin_name','header_size','resheader_size','fb_link','youtube_link','other_link')->first();
         $data = Magazine::where('category','Advertisement')->where('admin_name',$admin->admin_name)->orderBy('serial', 'asc')->get();
         
           return response()->json([
@@ -749,8 +748,8 @@ public function delete(Request $request) {
 
 
      public function apicommittee_view($username,$category2) {
-       $admin= Admin::where('admin_name',$username)->select('id','name','nameen','address','email',
-          'mobile','admin_name','header_size','resheader_size')->first();
+      $admin= Admin::where('admin_name',$username)->select('id','name','nameen','address','email',
+      'mobile','admin_name','header_size','resheader_size','fb_link','youtube_link','other_link')->first();
         $data = Magazine::where('category','Committee')->where('category2',$category2)
             ->where('admin_name',$admin->admin_name)->orderBy('serial', 'desc')->get();
       
@@ -763,7 +762,7 @@ public function delete(Request $request) {
 
    public function apiexecutive_view($username) {
     $admin= Admin::where('admin_name',$username)->select('id','name','nameen','address','email',
-        'mobile','admin_name','header_size','resheader_size')->first();
+    'mobile','admin_name','header_size','resheader_size','fb_link','youtube_link','other_link')->first();
     $data = Magazine::where('category','Executive')->where('admin_name',$admin->admin_name)->orderBy('serial', 'asc')->get();
     
       return response()->json([
@@ -778,10 +777,11 @@ public function delete(Request $request) {
      public function apimemberGetByUnion(Request $request ,$username) {
        $union_id=$request->union_id;
        $member_category=$request->member_category;
-        $admin= Admin::where('admin_name',$username)->select('id','name','nameen','address','email',
-                     'mobile','admin_name','header_size','resheader_size')->first();
+       $admin= Admin::where('admin_name',$username)->select('id','name','nameen','address','email',
+                     'mobile','admin_name','header_size','resheader_size','fb_link','youtube_link','other_link')->first();
         
         $data = Testimonial::where('testimonials.address_union',$union_id)->where('testimonials.admin_name',$admin->admin_name)
+        ->where('testimonials.category',$member_category)
         ->leftjoin('apps','apps.id','=','testimonials.address_union')
         ->select('apps.dureg as app_category','testimonials.*')->orderBy('custom2','asc')->orderBy('serial', 'asc')->get();
                   
