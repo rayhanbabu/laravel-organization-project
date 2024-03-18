@@ -33,6 +33,7 @@ class SmsController extends Controller
       }
     }
 
+
     public function smsdetails()
     {
       if(Session::has('admin')){
@@ -54,6 +55,8 @@ class SmsController extends Controller
         $sms_type = $request->input('sms_type');
         if ($sms_type == 'single') {
           $text = $request->input('text');
+          $textinfo = $text.'. '.strtoupper($admin->admin_name);
+          $characterCount = strlen($textinfo);
           $phone = $request->input('phone');
           $phonearr = $phone;
           $textinfo = $text;
@@ -61,9 +64,11 @@ class SmsController extends Controller
           $balancedata = json_decode(get_balance());
           $getsms = (int)($balancedata->balance / .25);
           if ($getsms < $smscount) {
-            return back()->with('danger', 'SMS API Server Problem. Please Contact Service provider');
+              return back()->with('danger', 'SMS API Server Problem. Please Contact Service provider');
           } else if ($smsavailable < $smscount) {
-            return back()->with('danger', '	Balance Validity Not Available');
+              return back()->with('danger', '	Balance Validity Not Available');
+          } else if ($characterCount>150) {
+              return back()->with('danger','Character must be 150');
           } else {
             sms_send($phonearr, $textinfo);
             $current_sms = $smsavailable - $smscount;
@@ -81,16 +86,17 @@ class SmsController extends Controller
           $category = $request->input('category');
           $fromserial = $request->input('fromserial');
           $toserial = $request->input('toserial');
-          if ($toserial -$fromserial<0  OR  $toserial -$fromserial>80) {
-            return back()->with('danger', 'Invalid Range Or Range geather 80 ');
-          }
-          $data = Testimonial::where('category', $category)
-            ->whereBetween('serial', [$fromserial, $toserial])->where('admin_name', $admin->admin_name)->where('verify_status',1)->get();
-          $smscount = $data->count();
-          $textinfo = $text;
+       
+        $data=Testimonial::where('category', $category)
+             ->whereBetween('serial',[$fromserial,$toserial])->where('admin_name', $admin->admin_name)->where('verify_status',1)->get();
+        $smscount = $data->count();
+        $textinfo = $text;
+        if ($smscount>81) {
+          return back()->with('danger', 'Invalid Range Or Range geather 80 ');
+        }
 
-          $balancedata = json_decode(get_balance());
-          $getsms = (int)($balancedata->balance / .25);
+        $balancedata = json_decode(get_balance());
+        $getsms = (int)($balancedata->balance / .25);
           if ($getsms < $smscount) {
             return back()->with('danger', 'SMS API Server Problem. Please Contact Service provider');
           } else if ($smsavailable < $smscount OR empty($smscount) ) {

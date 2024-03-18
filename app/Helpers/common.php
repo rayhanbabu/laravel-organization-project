@@ -30,8 +30,8 @@ function baseimage($path){
 
    function sms_send($phonearr,$text) {
     $url = "http://bulksmsbd.net/api/smsapi";
-    $api_key = "C6P8TG4mnTDDGLHosLeZ";
-    $senderid = 8809617613072;
+    $api_key = "Eu7TjIcUL3QhhK7qBmdN";
+    $senderid = 8809617614712;
     $number = '88'.$phonearr;
     $message = $text;
  
@@ -54,7 +54,7 @@ function baseimage($path){
 
 function get_balance() {
   $url = "http://bulksmsbd.net/api/getBalanceApi";
-  $api_key ="C6P8TG4mnTDDGLHosLeZ";
+  $api_key ="Eu7TjIcUL3QhhK7qBmdN";
   $data = [
       "api_key" => $api_key
   ];

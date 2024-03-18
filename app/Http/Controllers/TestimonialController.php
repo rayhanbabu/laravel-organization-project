@@ -176,9 +176,8 @@ class TestimonialController extends Controller
       $testimonial->university=$request->input('university');
       $testimonial->department=$request->input('department');
       $testimonial->address_union=$request->input('address_union');
+      $testimonial->fb_link=$request->input('fb_link');
 
-
-    
        if($request->hasfile('image')){
         //$file=$_FILES['image']['tmp_name'];
         //$hw=getimagesize($file);
@@ -684,18 +683,17 @@ public function delete(Request $request) {
       }
 
 
-  public function apibank($username) {
-    $admin= Admin::where('admin_name',$username)->select('id','name','nameen','address','email',
-    'mobile','admin_name','header_size','resheader_size','fb_link','youtube_link','other_link')->first();
-     $data = App::where('admin_name',$admin->admin_name)->where('category','bank')->orderBy('phone', 'asc')->get();
-     $logu = Magazine::where('category','Slide')->where('text4','Logu')->where('admin_name',$admin->admin_name)->first();
-        
-         return response()->json([
-              'admin'=>$admin 
-              ,'data'=>$data
-              ,'logu'=>$logu
-          ]);
-    }
+   public function apibank($username) {
+     $admin= Admin::where('admin_name',$username)->select('id','name','nameen','address','email',
+     'mobile','admin_name','header_size','resheader_size','fb_link','youtube_link','other_link')->first();
+      $data = App::where('admin_name',$admin->admin_name)->where('category','bank')->orderBy('phone', 'asc')->get();
+      $logu = Magazine::where('category','Slide')->where('text4','Logu')->where('admin_name',$admin->admin_name)->first();    
+           return response()->json([
+               'admin'=>$admin 
+               ,'data'=>$data
+               ,'logu'=>$logu
+            ]);
+     }
 
 
  
@@ -705,7 +703,6 @@ public function delete(Request $request) {
              ,'formname','phone' ,'custom1','custom2')->first();
        
         $logu = Magazine::where('category','Slide')->where('text4','Logu')->where('admin_name',$admin->admin_name)->first();
-          
            return response()->json([
                 'admin'=>$admin 
                 ,'logu'=>$logu

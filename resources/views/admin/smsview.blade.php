@@ -8,7 +8,6 @@
                        
                  </ol>
            
-
                  <div class="container mt-3">
 
                  <div class="form-group  mx-2 my-2">
@@ -54,7 +53,7 @@
                               </div> 
                               <div class="form-group  mx-3 my-3">
                                    <label class=""><b>Message<span style="color:red;"> * </span></b></label>
-                                   <textarea name="text" id="text" col="15" rows="3" maxlength="158" class="form-control" required></textarea>
+                                   <textarea name="text" id="text" col="15" rows="3" maxlength="150" class="form-control" required></textarea>
                               </div> 
                               <div class="form-group  mx-3 my-3">
                                     <input type="submit" value="Send massage" class="btn btn-primary waves-effect waves-light">
@@ -89,7 +88,7 @@
 
                               <div class="form-group  mx-3 my-3">
                                    <label class=""><b>Message <span style="color:red;"> * </span></b></label>
-                                   <textarea name="text" id="text" col="15" rows="3" maxlength="172" class="form-control" required></textarea>
+                                   <textarea name="text" id="text" col="15" rows="3" maxlength="150" class="form-control" required></textarea>
                               </div>
 
                               <div class="form-group  mx-3 my-3">
